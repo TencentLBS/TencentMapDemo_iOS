@@ -22,11 +22,13 @@ API是提供给具有一定IOS开发经验和了解面向对象概念的开发�
 
 
 
-第二步添加framework的资源文件。
+第二步添加framework的资源文件。开发者需在[腾讯地图 iOS SDK官网](https://lbs.qq.com/ios_v1/download_3d.html)下载sdk资源包，解压后在sdk文件夹中找到QMapKit.framework文件，然后在工程界面选中  **library文件夹**  右键弹出菜单中选择"Add Files To..."，从**文件夹sdk** 中将文件QMapKit.framework添加到工程中，在弹出窗口中勾选"Copy items into destination group's folder(if needed)" 。
+
+![](https://upload.cc/i1/2019/05/22/O7EITu.png)
 
 ##### 2.添加资源文件
 
-在工程界面右键弹出菜单中选择"Add Files To..."，从文件夹frameworks->QMapKit.framework->Resources中将资源文件QMapKit.bundle添加到工程中，在弹出窗口中勾选"Copy items into destination group's folder(if needed)" 。
+在工程界面右键弹出菜单中选择"Add Files To..."，从文件夹sdk（同步骤1）->QMapKit.framework中将资源文件QMapKit.bundle添加到工程中，在弹出窗口中勾选"Copy items into destination group's folder(if needed)" 。
 
 ![](https://upload.cc/i1/2019/04/08/FPp6n2.png)
 
