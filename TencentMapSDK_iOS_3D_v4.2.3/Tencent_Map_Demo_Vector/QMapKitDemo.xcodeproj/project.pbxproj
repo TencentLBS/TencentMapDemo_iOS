@@ -1,0 +1,702 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		319793F51F3471ED007486B9 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 319793F41F3471DB007486B9 /* ball.png */; };
+		31BFE8DA1F3464180026C9BB /* colorSample.png in Resources */ = {isa = PBXBuildFile; fileRef = 31BFE8D91F3463FC0026C9BB /* colorSample.png */; };
+		31BFE8E61F34675B0026C9BB /* foot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 31BFE8E51F3467550026C9BB /* foot.jpg */; };
+		31BFE8E81F346D760026C9BB /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 31BFE8E71F346D6F0026C9BB /* arrow.png */; };
+		539937C5225749DB0085326B /* WalkingSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539937C3225749DB0085326B /* WalkingSearchViewController.m */; };
+		539937E822574BF70085326B /* HandDrawMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539937DE22574BF70085326B /* HandDrawMapViewController.m */; };
+		539937E922574BF70085326B /* MapCoreAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539937DF22574BF70085326B /* MapCoreAnimationViewController.m */; };
+		539937EA22574BF70085326B /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539937E222574BF70085326B /* MapViewController.m */; };
+		539937EB22574BF70085326B /* GestureControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539937E522574BF70085326B /* GestureControlViewController.m */; };
+		539937EC22574BF70085326B /* MultiStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539937E722574BF70085326B /* MultiStyleViewController.m */; };
+		539937F922574C2C0085326B /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539937EF22574C2C0085326B /* OverlayViewController.m */; };
+		539937FB22574C2C0085326B /* TexturePolylineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539937F222574C2C0085326B /* TexturePolylineViewController.m */; };
+		539937FC22574C2C0085326B /* EraseLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539937F322574C2C0085326B /* EraseLineViewController.m */; };
+		539937FD22574C2C0085326B /* DashLineOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539937F422574C2C0085326B /* DashLineOverlayViewController.m */; };
+		539937FE22574C2C0085326B /* HeatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539937F522574C2C0085326B /* HeatViewController.m */; };
+		5399380B22574C530085326B /* Longpress_AnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5399380222574C520085326B /* Longpress_AnnotationViewController.m */; };
+		5399380C22574C530085326B /* ChangeMapCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5399380422574C520085326B /* ChangeMapCenterViewController.m */; };
+		5399380D22574C530085326B /* ControlPanelInteractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5399380522574C520085326B /* ControlPanelInteractViewController.m */; };
+		5399380E22574C530085326B /* DisplaySelectedRegionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5399380722574C520085326B /* DisplaySelectedRegionViewController.m */; };
+		5399380F22574C530085326B /* SnapshotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5399380922574C530085326B /* SnapshotViewController.m */; };
+		5399381222574C810085326B /* EntryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5399381122574C810085326B /* EntryData.m */; };
+		5399381522574E040085326B /* greenPin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5399381322574E040085326B /* greenPin@2x.png */; };
+		5399381622574E040085326B /* redPin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5399381422574E040085326B /* redPin@2x.png */; };
+		655F304A1F1CBA8B00FA20A9 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 655F30491F1CBA8B00FA20A9 /* libc++.tbd */; };
+		655F304C1F1CBA8F00FA20A9 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 655F304B1F1CBA8F00FA20A9 /* libsqlite3.0.tbd */; };
+		65A0CD891F16008B00811B83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A0CD881F16008B00811B83 /* main.m */; };
+		65A0CD8C1F16008B00811B83 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A0CD8B1F16008B00811B83 /* AppDelegate.m */; };
+		65A0CD941F16008B00811B83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65A0CD931F16008B00811B83 /* Assets.xcassets */; };
+		65A0CD971F16008B00811B83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A0CD951F16008B00811B83 /* LaunchScreen.storyboard */; };
+		65A0CDDF1F1601F000811B83 /* BaseMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A0CDAE1F1601F000811B83 /* BaseMapViewController.m */; };
+		65A0CDE81F1601F000811B83 /* CustomUserLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A0CDC31F1601F000811B83 /* CustomUserLocationViewController.m */; };
+		65A0CDE91F1601F000811B83 /* UserLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A0CDC51F1601F000811B83 /* UserLocationViewController.m */; };
+		65A0CDEB1F1601F000811B83 /* EntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A0CDC91F1601F000811B83 /* EntryViewController.m */; };
+		65A0CDEC1F1601F000811B83 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A0CDCC1F1601F000811B83 /* CustomAnnotationView.m */; };
+		65A0CDED1F1601F000811B83 /* TextSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A0CDCE1F1601F000811B83 /* TextSwitcher.m */; };
+		65A0CDEF1F1601F000811B83 /* car@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A0CDD21F1601F000811B83 /* car@2x.png */; };
+		65A0CDF01F1601F000811B83 /* good@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A0CDD31F1601F000811B83 /* good@2x.png */; };
+		65A0CDF11F1601F000811B83 /* gps_map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A0CDD41F1601F000811B83 /* gps_map@2x.png */; };
+		65A0CDF21F1601F000811B83 /* heatTest_2.heat in Resources */ = {isa = PBXBuildFile; fileRef = 65A0CDD51F1601F000811B83 /* heatTest_2.heat */; };
+		65A0CDF31F1601F000811B83 /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A0CDD61F1601F000811B83 /* marker@2x.png */; };
+		65A0CDF51F1601F000811B83 /* test_location_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A0CDD81F1601F000811B83 /* test_location_1@2x.png */; };
+		F6837A8A225C34080016A674 /* AnnotationAnimateCoordinate2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6837A7B225C34080016A674 /* AnnotationAnimateCoordinate2ViewController.m */; };
+		F6837A8B225C34080016A674 /* PinAnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6837A7D225C34080016A674 /* PinAnnotationViewController.m */; };
+		F6837A8C225C34080016A674 /* AnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6837A7E225C34080016A674 /* AnnotationViewController.m */; };
+		F6837A8D225C34080016A674 /* CustomAnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6837A80225C34080016A674 /* CustomAnnotationViewController.m */; };
+		F6837A8E225C34080016A674 /* CustomCalloutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6837A83225C34080016A674 /* CustomCalloutViewController.m */; };
+		F6837A8F225C34080016A674 /* ShowRelatedAnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6837A84225C34080016A674 /* ShowRelatedAnnotationViewController.m */; };
+		F6837A90225C34080016A674 /* AnnotationCoreAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6837A85225C34080016A674 /* AnnotationCoreAnimationViewController.m */; };
+		F6837A91225C34080016A674 /* AnnotationAnimateCoordinateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6837A87225C34080016A674 /* AnnotationAnimateCoordinateViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		65A0CDF81F16020400811B83 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		319793F41F3471DB007486B9 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
+		31BFE8D91F3463FC0026C9BB /* colorSample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorSample.png; sourceTree = "<group>"; };
+		31BFE8E51F3467550026C9BB /* foot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = foot.jpg; sourceTree = "<group>"; };
+		31BFE8E71F346D6F0026C9BB /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		539937C3225749DB0085326B /* WalkingSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalkingSearchViewController.m; sourceTree = "<group>"; };
+		539937C4225749DB0085326B /* WalkingSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalkingSearchViewController.h; sourceTree = "<group>"; };
+		539937DE22574BF70085326B /* HandDrawMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandDrawMapViewController.m; sourceTree = "<group>"; };
+		539937DF22574BF70085326B /* MapCoreAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapCoreAnimationViewController.m; sourceTree = "<group>"; };
+		539937E022574BF70085326B /* MapCoreAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapCoreAnimationViewController.h; sourceTree = "<group>"; };
+		539937E122574BF70085326B /* HandDrawMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandDrawMapViewController.h; sourceTree = "<group>"; };
+		539937E222574BF70085326B /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		539937E322574BF70085326B /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		539937E422574BF70085326B /* MultiStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiStyleViewController.h; sourceTree = "<group>"; };
+		539937E522574BF70085326B /* GestureControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureControlViewController.m; sourceTree = "<group>"; };
+		539937E622574BF70085326B /* GestureControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureControlViewController.h; sourceTree = "<group>"; };
+		539937E722574BF70085326B /* MultiStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiStyleViewController.m; sourceTree = "<group>"; };
+		539937ED22574C2C0085326B /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
+		539937EF22574C2C0085326B /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayViewController.m; sourceTree = "<group>"; };
+		539937F022574C2C0085326B /* TexturePolylineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexturePolylineViewController.h; sourceTree = "<group>"; };
+		539937F222574C2C0085326B /* TexturePolylineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexturePolylineViewController.m; sourceTree = "<group>"; };
+		539937F322574C2C0085326B /* EraseLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EraseLineViewController.m; sourceTree = "<group>"; };
+		539937F422574C2C0085326B /* DashLineOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashLineOverlayViewController.m; sourceTree = "<group>"; };
+		539937F522574C2C0085326B /* HeatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeatViewController.m; sourceTree = "<group>"; };
+		539937F622574C2C0085326B /* EraseLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EraseLineViewController.h; sourceTree = "<group>"; };
+		539937F722574C2C0085326B /* HeatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeatViewController.h; sourceTree = "<group>"; };
+		539937F822574C2C0085326B /* DashLineOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashLineOverlayViewController.h; sourceTree = "<group>"; };
+		5399380022574C520085326B /* ControlPanelInteractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlPanelInteractViewController.h; sourceTree = "<group>"; };
+		5399380122574C520085326B /* ChangeMapCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeMapCenterViewController.h; sourceTree = "<group>"; };
+		5399380222574C520085326B /* Longpress_AnnotationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Longpress_AnnotationViewController.m; sourceTree = "<group>"; };
+		5399380322574C520085326B /* DisplaySelectedRegionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplaySelectedRegionViewController.h; sourceTree = "<group>"; };
+		5399380422574C520085326B /* ChangeMapCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeMapCenterViewController.m; sourceTree = "<group>"; };
+		5399380522574C520085326B /* ControlPanelInteractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlPanelInteractViewController.m; sourceTree = "<group>"; };
+		5399380622574C520085326B /* Longpress_AnnotationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Longpress_AnnotationViewController.h; sourceTree = "<group>"; };
+		5399380722574C520085326B /* DisplaySelectedRegionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplaySelectedRegionViewController.m; sourceTree = "<group>"; };
+		5399380922574C530085326B /* SnapshotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnapshotViewController.m; sourceTree = "<group>"; };
+		5399380A22574C530085326B /* SnapshotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapshotViewController.h; sourceTree = "<group>"; };
+		5399381022574C800085326B /* EntryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryData.h; sourceTree = "<group>"; };
+		5399381122574C810085326B /* EntryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryData.m; sourceTree = "<group>"; };
+		5399381322574E040085326B /* greenPin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greenPin@2x.png"; sourceTree = "<group>"; };
+		5399381422574E040085326B /* redPin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPin@2x.png"; sourceTree = "<group>"; };
+		655F30491F1CBA8B00FA20A9 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		655F304B1F1CBA8F00FA20A9 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		65A0CD841F16008B00811B83 /* QMapKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QMapKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		65A0CD881F16008B00811B83 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		65A0CD8A1F16008B00811B83 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		65A0CD8B1F16008B00811B83 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		65A0CD931F16008B00811B83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		65A0CD961F16008B00811B83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		65A0CD981F16008B00811B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65A0CDAD1F1601F000811B83 /* BaseMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMapViewController.h; sourceTree = "<group>"; };
+		65A0CDAE1F1601F000811B83 /* BaseMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseMapViewController.m; sourceTree = "<group>"; };
+		65A0CDC21F1601F000811B83 /* CustomUserLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUserLocationViewController.h; sourceTree = "<group>"; };
+		65A0CDC31F1601F000811B83 /* CustomUserLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUserLocationViewController.m; sourceTree = "<group>"; };
+		65A0CDC41F1601F000811B83 /* UserLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationViewController.h; sourceTree = "<group>"; };
+		65A0CDC51F1601F000811B83 /* UserLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationViewController.m; sourceTree = "<group>"; };
+		65A0CDC81F1601F000811B83 /* EntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryViewController.h; sourceTree = "<group>"; };
+		65A0CDC91F1601F000811B83 /* EntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryViewController.m; sourceTree = "<group>"; };
+		65A0CDCB1F1601F000811B83 /* CustomAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnnotationView.h; sourceTree = "<group>"; };
+		65A0CDCC1F1601F000811B83 /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotationView.m; sourceTree = "<group>"; };
+		65A0CDCD1F1601F000811B83 /* TextSwitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextSwitcher.h; sourceTree = "<group>"; };
+		65A0CDCE1F1601F000811B83 /* TextSwitcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextSwitcher.m; sourceTree = "<group>"; };
+		65A0CDD21F1601F000811B83 /* car@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car@2x.png"; sourceTree = "<group>"; };
+		65A0CDD31F1601F000811B83 /* good@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "good@2x.png"; sourceTree = "<group>"; };
+		65A0CDD41F1601F000811B83 /* gps_map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gps_map@2x.png"; sourceTree = "<group>"; };
+		65A0CDD51F1601F000811B83 /* heatTest_2.heat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = heatTest_2.heat; sourceTree = "<group>"; };
+		65A0CDD61F1601F000811B83 /* marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker@2x.png"; sourceTree = "<group>"; };
+		65A0CDD81F1601F000811B83 /* test_location_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test_location_1@2x.png"; sourceTree = "<group>"; };
+		F6837A7A225C34080016A674 /* CustomCalloutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCalloutViewController.h; sourceTree = "<group>"; };
+		F6837A7B225C34080016A674 /* AnnotationAnimateCoordinate2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationAnimateCoordinate2ViewController.m; sourceTree = "<group>"; };
+		F6837A7C225C34080016A674 /* ShowRelatedAnnotationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowRelatedAnnotationViewController.h; sourceTree = "<group>"; };
+		F6837A7D225C34080016A674 /* PinAnnotationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinAnnotationViewController.m; sourceTree = "<group>"; };
+		F6837A7E225C34080016A674 /* AnnotationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationViewController.m; sourceTree = "<group>"; };
+		F6837A7F225C34080016A674 /* AnnotationAnimateCoordinateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationAnimateCoordinateViewController.h; sourceTree = "<group>"; };
+		F6837A80225C34080016A674 /* CustomAnnotationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotationViewController.m; sourceTree = "<group>"; };
+		F6837A81225C34080016A674 /* AnnotationCoreAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationCoreAnimationViewController.h; sourceTree = "<group>"; };
+		F6837A82225C34080016A674 /* AnnotationAnimateCoordinate2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationAnimateCoordinate2ViewController.h; sourceTree = "<group>"; };
+		F6837A83225C34080016A674 /* CustomCalloutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCalloutViewController.m; sourceTree = "<group>"; };
+		F6837A84225C34080016A674 /* ShowRelatedAnnotationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowRelatedAnnotationViewController.m; sourceTree = "<group>"; };
+		F6837A85225C34080016A674 /* AnnotationCoreAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationCoreAnimationViewController.m; sourceTree = "<group>"; };
+		F6837A86225C34080016A674 /* CustomAnnotationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnnotationViewController.h; sourceTree = "<group>"; };
+		F6837A87225C34080016A674 /* AnnotationAnimateCoordinateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationAnimateCoordinateViewController.m; sourceTree = "<group>"; };
+		F6837A88225C34080016A674 /* PinAnnotationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinAnnotationViewController.h; sourceTree = "<group>"; };
+		F6837A89225C34080016A674 /* AnnotationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationViewController.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		65A0CD811F16008B00811B83 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				655F304C1F1CBA8F00FA20A9 /* libsqlite3.0.tbd in Frameworks */,
+				655F304A1F1CBA8B00FA20A9 /* libc++.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		31DF64062248BE55007AC70E /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				539937C4225749DB0085326B /* WalkingSearchViewController.h */,
+				539937C3225749DB0085326B /* WalkingSearchViewController.m */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		539937FF22574C520085326B /* Interaction */ = {
+			isa = PBXGroup;
+			children = (
+				5399380022574C520085326B /* ControlPanelInteractViewController.h */,
+				5399380522574C520085326B /* ControlPanelInteractViewController.m */,
+				5399380122574C520085326B /* ChangeMapCenterViewController.h */,
+				5399380422574C520085326B /* ChangeMapCenterViewController.m */,
+				5399380222574C520085326B /* Longpress_AnnotationViewController.m */,
+				5399380622574C520085326B /* Longpress_AnnotationViewController.h */,
+				5399380322574C520085326B /* DisplaySelectedRegionViewController.h */,
+				5399380722574C520085326B /* DisplaySelectedRegionViewController.m */,
+			);
+			path = Interaction;
+			sourceTree = "<group>";
+		};
+		5399380822574C530085326B /* Snapshot */ = {
+			isa = PBXGroup;
+			children = (
+				5399380922574C530085326B /* SnapshotViewController.m */,
+				5399380A22574C530085326B /* SnapshotViewController.h */,
+			);
+			path = Snapshot;
+			sourceTree = "<group>";
+		};
+		53993817225782830085326B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		655F30461F1CBA8700FA20A9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				655F304B1F1CBA8F00FA20A9 /* libsqlite3.0.tbd */,
+				655F30491F1CBA8B00FA20A9 /* libc++.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		65A0CD7B1F16008B00811B83 = {
+			isa = PBXGroup;
+			children = (
+				65A0CD861F16008B00811B83 /* QMapKitDemo */,
+				65A0CD851F16008B00811B83 /* Products */,
+				655F30461F1CBA8700FA20A9 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		65A0CD851F16008B00811B83 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				65A0CD841F16008B00811B83 /* QMapKitDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		65A0CD861F16008B00811B83 /* QMapKitDemo */ = {
+			isa = PBXGroup;
+			children = (
+				65A0CD9E1F1601F000811B83 /* Demos */,
+				65A0CDCF1F1601F000811B83 /* library */,
+				65A0CDD11F1601F000811B83 /* Resources */,
+				65A0CD8A1F16008B00811B83 /* AppDelegate.h */,
+				65A0CD8B1F16008B00811B83 /* AppDelegate.m */,
+				65A0CD931F16008B00811B83 /* Assets.xcassets */,
+				65A0CD951F16008B00811B83 /* LaunchScreen.storyboard */,
+				65A0CD981F16008B00811B83 /* Info.plist */,
+				65A0CD871F16008B00811B83 /* Supporting Files */,
+			);
+			path = QMapKitDemo;
+			sourceTree = "<group>";
+		};
+		65A0CD871F16008B00811B83 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				65A0CD881F16008B00811B83 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		65A0CD9E1F1601F000811B83 /* Demos */ = {
+			isa = PBXGroup;
+			children = (
+				53993817225782830085326B /* Model */,
+				65A0CD9F1F1601F000811B83 /* Controllers */,
+				65A0CDC81F1601F000811B83 /* EntryViewController.h */,
+				65A0CDC91F1601F000811B83 /* EntryViewController.m */,
+				5399381022574C800085326B /* EntryData.h */,
+				5399381122574C810085326B /* EntryData.m */,
+				65A0CDCA1F1601F000811B83 /* Views */,
+			);
+			path = Demos;
+			sourceTree = "<group>";
+		};
+		65A0CD9F1F1601F000811B83 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F6837A79225C34080016A674 /* Annotation */,
+				539937FF22574C520085326B /* Interaction */,
+				5399380822574C530085326B /* Snapshot */,
+				31DF64062248BE55007AC70E /* Search */,
+				65A0CDAD1F1601F000811B83 /* BaseMapViewController.h */,
+				65A0CDAE1F1601F000811B83 /* BaseMapViewController.m */,
+				65A0CDAF1F1601F000811B83 /* Map */,
+				65A0CDBA1F1601F000811B83 /* Overlay */,
+				65A0CDC11F1601F000811B83 /* UserLocation */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		65A0CDAF1F1601F000811B83 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				539937E622574BF70085326B /* GestureControlViewController.h */,
+				539937E522574BF70085326B /* GestureControlViewController.m */,
+				539937E122574BF70085326B /* HandDrawMapViewController.h */,
+				539937DE22574BF70085326B /* HandDrawMapViewController.m */,
+				539937E022574BF70085326B /* MapCoreAnimationViewController.h */,
+				539937DF22574BF70085326B /* MapCoreAnimationViewController.m */,
+				539937E322574BF70085326B /* MapViewController.h */,
+				539937E222574BF70085326B /* MapViewController.m */,
+				539937E422574BF70085326B /* MultiStyleViewController.h */,
+				539937E722574BF70085326B /* MultiStyleViewController.m */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		65A0CDBA1F1601F000811B83 /* Overlay */ = {
+			isa = PBXGroup;
+			children = (
+				539937F822574C2C0085326B /* DashLineOverlayViewController.h */,
+				539937F422574C2C0085326B /* DashLineOverlayViewController.m */,
+				539937F622574C2C0085326B /* EraseLineViewController.h */,
+				539937F322574C2C0085326B /* EraseLineViewController.m */,
+				539937F722574C2C0085326B /* HeatViewController.h */,
+				539937F522574C2C0085326B /* HeatViewController.m */,
+				539937ED22574C2C0085326B /* OverlayViewController.h */,
+				539937EF22574C2C0085326B /* OverlayViewController.m */,
+				539937F022574C2C0085326B /* TexturePolylineViewController.h */,
+				539937F222574C2C0085326B /* TexturePolylineViewController.m */,
+			);
+			path = Overlay;
+			sourceTree = "<group>";
+		};
+		65A0CDC11F1601F000811B83 /* UserLocation */ = {
+			isa = PBXGroup;
+			children = (
+				65A0CDC21F1601F000811B83 /* CustomUserLocationViewController.h */,
+				65A0CDC31F1601F000811B83 /* CustomUserLocationViewController.m */,
+				65A0CDC41F1601F000811B83 /* UserLocationViewController.h */,
+				65A0CDC51F1601F000811B83 /* UserLocationViewController.m */,
+			);
+			path = UserLocation;
+			sourceTree = "<group>";
+		};
+		65A0CDCA1F1601F000811B83 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				65A0CDCB1F1601F000811B83 /* CustomAnnotationView.h */,
+				65A0CDCC1F1601F000811B83 /* CustomAnnotationView.m */,
+				65A0CDCD1F1601F000811B83 /* TextSwitcher.h */,
+				65A0CDCE1F1601F000811B83 /* TextSwitcher.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		65A0CDCF1F1601F000811B83 /* library */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = library;
+			sourceTree = "<group>";
+		};
+		65A0CDD11F1601F000811B83 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5399381322574E040085326B /* greenPin@2x.png */,
+				5399381422574E040085326B /* redPin@2x.png */,
+				319793F41F3471DB007486B9 /* ball.png */,
+				31BFE8E71F346D6F0026C9BB /* arrow.png */,
+				31BFE8E51F3467550026C9BB /* foot.jpg */,
+				31BFE8D91F3463FC0026C9BB /* colorSample.png */,
+				65A0CDD21F1601F000811B83 /* car@2x.png */,
+				65A0CDD31F1601F000811B83 /* good@2x.png */,
+				65A0CDD41F1601F000811B83 /* gps_map@2x.png */,
+				65A0CDD51F1601F000811B83 /* heatTest_2.heat */,
+				65A0CDD61F1601F000811B83 /* marker@2x.png */,
+				65A0CDD81F1601F000811B83 /* test_location_1@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F6837A79225C34080016A674 /* Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				F6837A7A225C34080016A674 /* CustomCalloutViewController.h */,
+				F6837A7B225C34080016A674 /* AnnotationAnimateCoordinate2ViewController.m */,
+				F6837A7C225C34080016A674 /* ShowRelatedAnnotationViewController.h */,
+				F6837A7D225C34080016A674 /* PinAnnotationViewController.m */,
+				F6837A7E225C34080016A674 /* AnnotationViewController.m */,
+				F6837A7F225C34080016A674 /* AnnotationAnimateCoordinateViewController.h */,
+				F6837A80225C34080016A674 /* CustomAnnotationViewController.m */,
+				F6837A81225C34080016A674 /* AnnotationCoreAnimationViewController.h */,
+				F6837A82225C34080016A674 /* AnnotationAnimateCoordinate2ViewController.h */,
+				F6837A83225C34080016A674 /* CustomCalloutViewController.m */,
+				F6837A84225C34080016A674 /* ShowRelatedAnnotationViewController.m */,
+				F6837A85225C34080016A674 /* AnnotationCoreAnimationViewController.m */,
+				F6837A86225C34080016A674 /* CustomAnnotationViewController.h */,
+				F6837A87225C34080016A674 /* AnnotationAnimateCoordinateViewController.m */,
+				F6837A88225C34080016A674 /* PinAnnotationViewController.h */,
+				F6837A89225C34080016A674 /* AnnotationViewController.h */,
+			);
+			path = Annotation;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		65A0CD831F16008B00811B83 /* QMapKitDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65A0CD9B1F16008B00811B83 /* Build configuration list for PBXNativeTarget "QMapKitDemo" */;
+			buildPhases = (
+				65A0CD801F16008B00811B83 /* Sources */,
+				65A0CD811F16008B00811B83 /* Frameworks */,
+				65A0CD821F16008B00811B83 /* Resources */,
+				65A0CDF81F16020400811B83 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QMapKitDemo;
+			productName = QMapKitDemo;
+			productReference = 65A0CD841F16008B00811B83 /* QMapKitDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		65A0CD7C1F16008B00811B83 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = tencent;
+				TargetAttributes = {
+					65A0CD831F16008B00811B83 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 65A0CD7F1F16008B00811B83 /* Build configuration list for PBXProject "QMapKitDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+				Base,
+			);
+			mainGroup = 65A0CD7B1F16008B00811B83;
+			productRefGroup = 65A0CD851F16008B00811B83 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				65A0CD831F16008B00811B83 /* QMapKitDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		65A0CD821F16008B00811B83 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65A0CDEF1F1601F000811B83 /* car@2x.png in Resources */,
+				65A0CDF51F1601F000811B83 /* test_location_1@2x.png in Resources */,
+				319793F51F3471ED007486B9 /* ball.png in Resources */,
+				65A0CDF11F1601F000811B83 /* gps_map@2x.png in Resources */,
+				5399381522574E040085326B /* greenPin@2x.png in Resources */,
+				5399381622574E040085326B /* redPin@2x.png in Resources */,
+				65A0CDF21F1601F000811B83 /* heatTest_2.heat in Resources */,
+				65A0CDF01F1601F000811B83 /* good@2x.png in Resources */,
+				31BFE8E81F346D760026C9BB /* arrow.png in Resources */,
+				31BFE8DA1F3464180026C9BB /* colorSample.png in Resources */,
+				65A0CD971F16008B00811B83 /* LaunchScreen.storyboard in Resources */,
+				65A0CD941F16008B00811B83 /* Assets.xcassets in Resources */,
+				31BFE8E61F34675B0026C9BB /* foot.jpg in Resources */,
+				65A0CDF31F1601F000811B83 /* marker@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		65A0CD801F16008B00811B83 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5399380F22574C530085326B /* SnapshotViewController.m in Sources */,
+				65A0CDED1F1601F000811B83 /* TextSwitcher.m in Sources */,
+				539937EA22574BF70085326B /* MapViewController.m in Sources */,
+				539937E922574BF70085326B /* MapCoreAnimationViewController.m in Sources */,
+				65A0CD8C1F16008B00811B83 /* AppDelegate.m in Sources */,
+				5399380B22574C530085326B /* Longpress_AnnotationViewController.m in Sources */,
+				F6837A8E225C34080016A674 /* CustomCalloutViewController.m in Sources */,
+				539937FE22574C2C0085326B /* HeatViewController.m in Sources */,
+				539937FC22574C2C0085326B /* EraseLineViewController.m in Sources */,
+				539937EB22574BF70085326B /* GestureControlViewController.m in Sources */,
+				65A0CDEB1F1601F000811B83 /* EntryViewController.m in Sources */,
+				5399380E22574C530085326B /* DisplaySelectedRegionViewController.m in Sources */,
+				5399380C22574C530085326B /* ChangeMapCenterViewController.m in Sources */,
+				65A0CDEC1F1601F000811B83 /* CustomAnnotationView.m in Sources */,
+				65A0CDE91F1601F000811B83 /* UserLocationViewController.m in Sources */,
+				65A0CDE81F1601F000811B83 /* CustomUserLocationViewController.m in Sources */,
+				539937C5225749DB0085326B /* WalkingSearchViewController.m in Sources */,
+				F6837A8B225C34080016A674 /* PinAnnotationViewController.m in Sources */,
+				F6837A8D225C34080016A674 /* CustomAnnotationViewController.m in Sources */,
+				539937EC22574BF70085326B /* MultiStyleViewController.m in Sources */,
+				F6837A8F225C34080016A674 /* ShowRelatedAnnotationViewController.m in Sources */,
+				F6837A8A225C34080016A674 /* AnnotationAnimateCoordinate2ViewController.m in Sources */,
+				539937FD22574C2C0085326B /* DashLineOverlayViewController.m in Sources */,
+				F6837A90225C34080016A674 /* AnnotationCoreAnimationViewController.m in Sources */,
+				F6837A91225C34080016A674 /* AnnotationAnimateCoordinateViewController.m in Sources */,
+				539937E822574BF70085326B /* HandDrawMapViewController.m in Sources */,
+				5399380D22574C530085326B /* ControlPanelInteractViewController.m in Sources */,
+				539937FB22574C2C0085326B /* TexturePolylineViewController.m in Sources */,
+				5399381222574C810085326B /* EntryData.m in Sources */,
+				539937F922574C2C0085326B /* OverlayViewController.m in Sources */,
+				F6837A8C225C34080016A674 /* AnnotationViewController.m in Sources */,
+				65A0CDDF1F1601F000811B83 /* BaseMapViewController.m in Sources */,
+				65A0CD891F16008B00811B83 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		65A0CD951F16008B00811B83 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				65A0CD961F16008B00811B83 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		65A0CD991F16008B00811B83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		65A0CD9A1F16008B00811B83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		65A0CD9C1F16008B00811B83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/QMapKitDemo/library",
+				);
+				INFOPLIST_FILE = QMapKitDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_GENERATE_MAP_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tencent.QMapKitDemo-3D";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		65A0CD9D1F16008B00811B83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/QMapKitDemo/library",
+				);
+				INFOPLIST_FILE = QMapKitDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_GENERATE_MAP_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tencent.QMapKitDemo-3D";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		65A0CD7F1F16008B00811B83 /* Build configuration list for PBXProject "QMapKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65A0CD991F16008B00811B83 /* Debug */,
+				65A0CD9A1F16008B00811B83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65A0CD9B1F16008B00811B83 /* Build configuration list for PBXNativeTarget "QMapKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65A0CD9C1F16008B00811B83 /* Debug */,
+				65A0CD9D1F16008B00811B83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 65A0CD7C1F16008B00811B83 /* Project object */;
+}

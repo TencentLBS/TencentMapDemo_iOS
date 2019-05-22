@@ -1,0 +1,10 @@
+4.2.3
+
+2019-03-25
+
+
+新增：
+1. 步行路线规划功能
+    新增类：QMSSearchServices，QMSSeracher，QMSWalkingRouteSearchOption，QMSWalkingRouteSearchResult。
+修改:
+1. 修复已知问题，提高稳定性
