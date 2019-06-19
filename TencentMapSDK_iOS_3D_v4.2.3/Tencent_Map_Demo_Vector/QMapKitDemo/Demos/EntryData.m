@@ -44,27 +44,27 @@
             
             [cellArray addObject:cell];
         }
-    
+        
         //手绘图
         {
-        Cell *cell = [[Cell alloc] init];
-        
-        cell.title = @"手绘图";
-        cell.controllerClassName = @"HandDrawMapViewController";
-        
-        [cellArray addObject:cell];
+            Cell *cell = [[Cell alloc] init];
+            
+            cell.title = @"手绘图";
+            cell.controllerClassName = @"HandDrawMapViewController";
+            
+            [cellArray addObject:cell];
         }
-    
+        
         //个性化地图
         {
-        Cell *cell = [[Cell alloc] init];
-        
-        cell.title = @"个性化地图";
-        cell.controllerClassName = @"MultiStyleViewController";
-        
-        [cellArray addObject:cell];
+            Cell *cell = [[Cell alloc] init];
+            
+            cell.title = @"个性化地图";
+            cell.controllerClassName = @"MultiStyleViewController";
+            
+            [cellArray addObject:cell];
         }
-    
+        
         // 手势控制Cell.
         {
             Cell *cell = [[Cell alloc] init];
@@ -81,7 +81,26 @@
             
             cell.title = @"底图 CoreAnimation";
             cell.controllerClassName = @"MapCoreAnimationViewController";
-
+            
+            
+            [cellArray addObject:cell];
+        }
+    }
+    
+    //室内
+    {
+        Section *section = [[Section alloc] init];
+        section.title = @"底图";
+        NSMutableArray<Cell *> *cellArray = [NSMutableArray array];
+        section.cells = cellArray;
+        
+        [sectionArray addObject:section];
+        
+        {
+            Cell *cell = [[Cell alloc] init];
+            
+            cell.title = @"室内图";
+            cell.controllerClassName = @"IndoorViewController";
             
             [cellArray addObject:cell];
         }
@@ -94,12 +113,12 @@
         section.title = @"交互";
         NSMutableArray<Cell *> *cellArray = [NSMutableArray array];
         section.cells = cellArray;
-    
+        
         [sectionArray addObject:section];
-    
+        
         //控件交互
         {
-        
+            
             Cell *cell = [[Cell alloc] init];
             
             cell.title = @"控件交互";
@@ -107,41 +126,41 @@
             
             [cellArray addObject:cell];
         }
-    
+        
         //Change center location
         {
-        
-        Cell *cell = [[Cell alloc] init];
-        
-        cell.title = @"变更地图中心";
-        cell.controllerClassName = @"ChangeMapCenterViewController";
-        
-        [cellArray addObject:cell];
+            
+            Cell *cell = [[Cell alloc] init];
+            
+            cell.title = @"变更地图中心";
+            cell.controllerClassName = @"ChangeMapCenterViewController";
+            
+            [cellArray addObject:cell];
         }
-    
-    
+        
+        
         //展示选定区域
         {
-        
-        Cell *cell = [[Cell alloc] init];
-        
-        cell.title = @"展示选定区域";
-        cell.controllerClassName = @"DisplaySelectedRegionViewController";
-        
-        [cellArray addObject:cell];
+            
+            Cell *cell = [[Cell alloc] init];
+            
+            cell.title = @"展示选定区域";
+            cell.controllerClassName = @"DisplaySelectedRegionViewController";
+            
+            [cellArray addObject:cell];
         }
-    
+        
         //展示选定区域
         {
-        
-        Cell *cell = [[Cell alloc] init];
-        
-        cell.title = @"自定义手势(长按添加标记点)";
-        cell.controllerClassName = @"Longpress_AnnotationViewController";
-        
-        [cellArray addObject:cell];
+            
+            Cell *cell = [[Cell alloc] init];
+            
+            cell.title = @"自定义手势(长按添加标记点)";
+            cell.controllerClassName = @"Longpress_AnnotationViewController";
+            
+            [cellArray addObject:cell];
         }
-    
+        
     }
     
     // Annotation Section.
@@ -222,15 +241,15 @@
             
             [cellArray addObject:cell];
         }
-    
+        
         // 缩放地图展示标记Cell.
         {
-        Cell *cell = [[Cell alloc] init];
-        
-        cell.title = @"缩放地图展示标注";
-        cell.controllerClassName = @"ShowRelatedAnnotationViewController";
-        
-        [cellArray addObject:cell];
+            Cell *cell = [[Cell alloc] init];
+            
+            cell.title = @"缩放地图展示标注";
+            cell.controllerClassName = @"ShowRelatedAnnotationViewController";
+            
+            [cellArray addObject:cell];
         }
     }
     
@@ -252,18 +271,18 @@
             
             [cellArray addObject:cell];
         }
-    
+        
         // 虚线Overlay
         {
-        Cell *cell = [[Cell alloc] init];
-        
-        cell.title = @"虚线Overlay";
-        cell.controllerClassName = @"DashLineOverlayViewController";
-        
-        [cellArray addObject:cell];
+            Cell *cell = [[Cell alloc] init];
+            
+            cell.title = @"虚线Overlay";
+            cell.controllerClassName = @"DashLineOverlayViewController";
+            
+            [cellArray addObject:cell];
         }
-    
-    
+        
+        
         // 热力图 Cell.
         {
             Cell *cell = [[Cell alloc] init];
@@ -283,15 +302,15 @@
             
             [cellArray addObject:cell];
         }
-    
-    // 路线擦除
+        
+        // 路线擦除
         {
-        Cell *cell = [[Cell alloc] init];
-        
-        cell.title = @"路线擦除置灰";
-        cell.controllerClassName = @"EraseLineViewController";
-        
-        [cellArray addObject:cell];
+            Cell *cell = [[Cell alloc] init];
+            
+            cell.title = @"路线擦除置灰";
+            cell.controllerClassName = @"EraseLineViewController";
+            
+            [cellArray addObject:cell];
         }
     }
     
@@ -348,23 +367,23 @@
     
     // 截图.
     {
-    Section *section = [[Section alloc] init];
-    section.title = @"截图";
-    NSMutableArray<Cell *> *cellArray = [NSMutableArray array];
-    section.cells = cellArray;
-    
-    [sectionArray addObject:section];
-    
-    // 截图.
+        Section *section = [[Section alloc] init];
+        section.title = @"截图";
+        NSMutableArray<Cell *> *cellArray = [NSMutableArray array];
+        section.cells = cellArray;
+        
+        [sectionArray addObject:section];
+        
+        // 截图.
         {
-        Cell *cell = [[Cell alloc] init];
-        
-        cell.title = @"异步截图";
-        cell.controllerClassName = @"SnapshotViewController";
-        
-        [cellArray addObject:cell];
+            Cell *cell = [[Cell alloc] init];
+            
+            cell.title = @"异步截图";
+            cell.controllerClassName = @"SnapshotViewController";
+            
+            [cellArray addObject:cell];
         }
-    
+        
     }
     
     return entry;

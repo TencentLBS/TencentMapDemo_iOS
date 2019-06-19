@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		271E00A122C0BF9500DDB7D4 /* IndoorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E00A022C0BF9500DDB7D4 /* IndoorViewController.m */; };
 		319793F51F3471ED007486B9 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 319793F41F3471DB007486B9 /* ball.png */; };
 		31BFE8DA1F3464180026C9BB /* colorSample.png in Resources */ = {isa = PBXBuildFile; fileRef = 31BFE8D91F3463FC0026C9BB /* colorSample.png */; };
 		31BFE8E61F34675B0026C9BB /* foot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 31BFE8E51F3467550026C9BB /* foot.jpg */; };
@@ -72,6 +73,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		271E009F22C0BF9500DDB7D4 /* IndoorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndoorViewController.h; sourceTree = "<group>"; };
+		271E00A022C0BF9500DDB7D4 /* IndoorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndoorViewController.m; sourceTree = "<group>"; };
 		319793F41F3471DB007486B9 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
 		31BFE8D91F3463FC0026C9BB /* colorSample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorSample.png; sourceTree = "<group>"; };
 		31BFE8E51F3467550026C9BB /* foot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = foot.jpg; sourceTree = "<group>"; };
@@ -170,6 +173,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		271E009E22C0BF5B00DDB7D4 /* Indoor */ = {
+			isa = PBXGroup;
+			children = (
+				271E009F22C0BF9500DDB7D4 /* IndoorViewController.h */,
+				271E00A022C0BF9500DDB7D4 /* IndoorViewController.m */,
+			);
+			path = Indoor;
+			sourceTree = "<group>";
+		};
 		31DF64062248BE55007AC70E /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,6 +289,7 @@
 		65A0CD9F1F1601F000811B83 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				271E009E22C0BF5B00DDB7D4 /* Indoor */,
 				F6837A79225C34080016A674 /* Annotation */,
 				539937FF22574C520085326B /* Interaction */,
 				5399380822574C530085326B /* Snapshot */,
@@ -506,6 +519,7 @@
 				F6837A91225C34080016A674 /* AnnotationAnimateCoordinateViewController.m in Sources */,
 				539937E822574BF70085326B /* HandDrawMapViewController.m in Sources */,
 				5399380D22574C530085326B /* ControlPanelInteractViewController.m in Sources */,
+				271E00A122C0BF9500DDB7D4 /* IndoorViewController.m in Sources */,
 				539937FB22574C2C0085326B /* TexturePolylineViewController.m in Sources */,
 				5399381222574C810085326B /* EntryData.m in Sources */,
 				539937F922574C2C0085326B /* OverlayViewController.m in Sources */,
