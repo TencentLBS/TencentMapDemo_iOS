@@ -70,10 +70,9 @@ key的设置方法如下：
 ```
 
 # 地图使用注意事项：
-  $\color{red}{地图SDK提供的API需要在主线程调用，子线程调用可能会出现crash！！！}$
   
-  $\color{red}{red}$
-
+ <font color=red size=36>地图SDK提供的API需要在主线程调用，子线程调用可能会出现crash！！！</font>
+ 
 # 地图显示
 
 ## 地图实例化
