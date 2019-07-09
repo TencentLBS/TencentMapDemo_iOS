@@ -304,6 +304,41 @@ QCoordinateRegion region = QCoordinateRegionMake(CLLocationCoordinate2DMake(39.9
 (void) 	- mapView:regionDidChangeAnimated:gesture:
 ```
 
+
+
+# 地图点击事件回调
+
+点击地图空白处，获取该点坐标
+
+```objective-c
+//点击地图空白处会调用此接口.
+- (void) mapView:(QMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D) 	coordinate 
+{
+  //获取坐标点后可对它的进行操作，如生成POI点
+  QPoiInfo *poi = [QPoiInfo alloc] init];
+  poi.coordinate = coordinate;
+  ......
+  
+}
+```
+
+
+
+点击地图poi图标处，获取poi信息
+
+```objective-c
+//点击地图poi图标处会调用此接口
+- (void) mapView:(QMapView *)mapView didTapPoi:(QPoiInfo *)poi
+{
+  	//点击poi后获取其信息
+  	self.poiInfo = poi;
+    NSLog(@"POI  name %@",self.poiInfo.name);
+    NSLog(@"POI  coordinate %@",self.poiInfo.coordinate);
+}
+```
+
+
+
 # UI设置
 
 ##### 1、指南针
