@@ -191,6 +191,13 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		5302DFDE22DC2ABF00EF7DC9 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		539937FF22574C520085326B /* Interaction */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,8 +258,8 @@
 		65A0CD861F16008B00811B83 /* QMapKitDemo */ = {
 			isa = PBXGroup;
 			children = (
+				5302DFDE22DC2ABF00EF7DC9 /* Library */,
 				65A0CD9E1F1601F000811B83 /* Demos */,
-				65A0CDCF1F1601F000811B83 /* library */,
 				65A0CDD11F1601F000811B83 /* Resources */,
 				65A0CD8A1F16008B00811B83 /* AppDelegate.h */,
 				65A0CD8B1F16008B00811B83 /* AppDelegate.m */,
@@ -357,13 +364,6 @@
 				65A0CDCE1F1601F000811B83 /* TextSwitcher.m */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		65A0CDCF1F1601F000811B83 /* library */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = library;
 			sourceTree = "<group>";
 		};
 		65A0CDD11F1601F000811B83 /* Resources */ = {
