@@ -281,7 +281,27 @@
             
             [cellArray addObject:cell];
         }
+    
+        // 自定义Overlay
+        {
+            Cell *cell = [[Cell alloc] init];
         
+            cell.title = @"瓦片图";
+            cell.controllerClassName = @"TileOverlayViewController";
+        
+            [cellArray addObject:cell];
+        }
+    
+    
+        {
+            Cell *cell = [[Cell alloc] init];
+        
+            cell.title = @"本地自定义瓦片图";
+            cell.controllerClassName = @"CustomTileOverlayViewController";
+        
+            [cellArray addObject:cell];
+        }
+    
         
         // 热力图 Cell.
         {

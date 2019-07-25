@@ -1084,70 +1084,290 @@ toColor:		(BOOL) 	clearColor
 
 添加热力图返回的是一个**QHeatTileOverlay**对象，代表当前地图的热力图层。
 
+最后根据对应的 **QHeatTileOverlay** 生成对应的 **QHeatTileOverlayView** 进行渲染显示
+
 #### 添加热力图
 
-热力图需要的数据是经纬度和热力值， 示例代码：
+根据热力图的数据来源提取所需热力图节点的位置和热力值，其中节点的位置包含经度和纬度， 热力值为一个double value。
+
+1. 提取节点数据结构：
+
+   ```objective-c
+   NSString *filePath = [[NSBundle mainBundle] pathForResource:@"heatTest_2" ofType:@"heat"];	//demo中的数据文件，用户自行替换对应的文件
+       
+       NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+       
+       // first, separate by new line
+       NSArray* allLinedStrings = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+       
+       self.nodes = [NSMutableArray array];
+       
+       [allLinedStrings enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+           
+           NSArray *ar = [obj componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+           
+           // 纬度.
+           double lat = [ar[1] doubleValue];
+           // 经度.
+           double lon = [ar[0] doubleValue];
+           // 权值.
+           double val = [ar[2] doubleValue];
+   ```
+
+2. 构建热力节点
+
+   ```objective-c
+   //生成热力节点
+    QHeatTileNode *node = [[QHeatTileNode alloc] init];
+   //节点对应的经纬度
+    node.coordinate = CLLocationCoordinate2DMake(lat, lon);
+   //节点的热力值
+    node.value      = val;
+           
+    [self.nodes addObject:node];
+   ```
+
+3. 生成对应的QHeatTileOverlay （接口 initWithHeatTileNodes:(NSArray *)heatTileNodes）和QHeatTileOverlayView
+
+   ```objective-c
+   //根据热力节点生成heatTileOverlay
+   QHeatTileOverlay *heat = [[QHeatTileOverlay alloc] initWithHeatTileNodes:self.nodes];
+   
+   //在添加到mapview前生成heatTileOverlayView
+   - (QOverlayView *)mapView:(QMapView *)mapView viewForOverlay:(id<QOverlay>)overlay
+   {
+       if ([overlay isKindOfClass:[QHeatTileOverlay class]]) {
+           QHeatTileOverlayView *render = [[QHeatTileOverlayView alloc] initWithTileOverlay:overlay];
+           return render;
+       }
+       return nil;
+   }
+   ```
+
+4. 添加到mapview中
+
+   ```objective-c
+   [self.mapView addOverlay:self.heatTileOverlay];
+   ```
+
+完成上面所述的步骤后即可生成默认的热力图，效果如下：
+
+<img src="./image/heatmap.png" width="300" >
+
+#### 设置热力图衰变半径
+
+除去默认半径，用户还可以自定义热力图的半径，设置方法如下：
 
 ```objective-c
-/ 从文件中提取数据，构建QHeatTileOverlay.
-- (QHeatTileOverlay *)constructHeatTileOverlay
+//设置半径接口
+[self.heatTileOverlay setDecayRadius:50];
+
+//重刷新渲染缓存
+QHeatTileOverlayView *heatView = (QHeatTileOverlayView *)[self.mapView viewForOverlay:self.heatTileOverlay];
+[heatView reloadData];
+```
+
+注意：更新热力图半径后，需重调用重载数据接口（reloadData)重刷新渲染缓存。
+
+下图效果为衰变半径由默认设置为50后：
+
+<img src="./image/heatmap1.png" width="300" >
+
+<img src="./image/heatmap2.png" width="300" >
+
+#### 设置热力图的颜色梯度
+
+除去默认半径，用户还可以自定义热力图的半径。用户可通过 initWithColor:  andWithStartPoints: 接口重新设置gradient，示例方法如下：
+
+```objective-c
+/*
+* @param colors      颜色列表
+ * @param startPoints 颜色变化节点列表，需为严格递增数组(无相同值)，区间为[0, 1.0]
+ * @return QHeatTileGradient
+ *
+ * @notes colors和startPoints的个数必须相同
+ */
+- (instancetype)initWithColor:(NSArray<UIColor *> *)colors andWithStartPoints:(NSArray<NSNumber *> *)startPoints;
+
+//自定义颜色梯度
+self.heatTileOverlay.gradient = [[QHeatTileGradient alloc] initWithColor:@[[UIColor grayColor],[UIColor brownColor], [UIColor blueColor],[UIColor greenColor],[UIColor yellowColor],[UIColor redColor]] andWithStartPoints:@[@(0.1),@(0.3),@(0.5), @(0.6), @(0.8),@(0.9)]];
+
+QHeatTileOverlayView *heatView = (QHeatTileOverlayView *)[self.mapView viewForOverlay:self.heatTileOverlay];
+[heatView reloadData];
+```
+
+注意：更新热力图颜色梯度后，需重调用重载数据接口（reloadData)重刷新渲染缓存。
+
+效果图如下：
+
+<img src="./image/heatmap2.png" width="300" >
+
+<img src="./image/heatmap3.png" width="300" >
+
+#### 移除热力图
+
+用户可以通过接口 removeOverlay 移除对应的热力图，实现方法如下：
+
+```objective-c
+[self.mapView removeOverlay:self.heatTileOverlay];
+```
+
+详细示例请参考demo中的HeatViewController示例。
+
+
+
+## 自定义瓦片
+
+腾讯地图提供了添加瓦片图层的能力，为基础底层地图添加了额外的特性，支持开发者添加自定义瓦片数据，包括本地加载和在线下载两种方式。用户可通过添加自有瓦片数据在底层地图上显示某一景区详情或者某一商场信息等。
+
+自定义瓦片图层类是QTileOverlay（QOverlay的子类），它定义了添加到基础地图的图片集合。 图层可随地图进行平移、缩放、旋转等操作变换，它位于底图之上(瓦片图层将会遮挡地图，不遮挡其他图层)，瓦片图层的添加顺序不会影响其他图层的叠加关系，适用于开发者拥有某区域的地图，并希望使用区域地图覆盖相应位置的腾讯地图。
+
+#### 瓦片划分规则：
+
+添加瓦片图层的前提是使用球面墨卡托投影生成了相应的瓦片，并按照生成的格式部署在您的服务器上。根据不同的比例尺将地图划分成若干个瓦片，并且以中心点经纬度(0,0)开始计算瓦片，当地图显示缩放级别增大时，每一个瓦片被划分成4 个瓦片。如： 地图级别为0时，只有1张瓦片；地图级别为1时，会分成4 张瓦片；地图级别为2时，会分成4的2次方 = 16 张瓦片。
+
+#### 绘制方式：
+
+对外提供自定义瓦片能力，用户可以通过接口来自行定义瓦片。为用户提供两种设置自定义瓦片的方式，1）本地图片方式  2）URL方式；
+
+ 
+
+1）**本地图片方式**：用户在底图之上增加自定义2D图层，并且本地生成图片目标区域坐标系对应的图片数据，通过地图回调的接口设置给地图SDK，从而达到显示的效果。如2D热力图效果等。
+
+1.使用本地图片需要将图片打包于应用内
+
+2.生成QTileOverlay的一个子类并且重载QTileOverlay的loadTileAtPath: result:方法
+
+```objective-c
+//QTileOverlay子类
+@interface LocalTile : QTileOverlay
+@end
+
+//重载loadTileAtPath: result:
+  - (void)loadTileAtPath:(QTileOverlayPath)path result:(void (^)(NSData *, NSError *))result
 {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"heatTest_2" ofType:@"heat"];
-    
-    NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    
-    // first, separate by new line
-    NSArray* allLinedStrings = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    
-    self.nodes = [NSMutableArray array];
-    
-    [allLinedStrings enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        NSArray *ar = [obj componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        
-        // 纬度.
-        double lat = [ar[1] doubleValue];
-        // 经度.
-        double lon = [ar[0] doubleValue];
-        // 权值.
-        double val = [ar[2] doubleValue];
-        
-        QHeatTileNode *node = [[QHeatTileNode alloc] init];
-        node.coordinate = CLLocationCoordinate2DMake(lat, lon);
-        node.value      = val;
-        
-        [self.nodes addObject:node];
-        
-    }];
-    //生成热力图层
-    QHeatTileOverlay *heat = [[QHeatTileOverlay alloc] initWithHeatTileNodes:self.nodes];
-    
-    return heat;
+  	//本地图片格式(示例为z-x-y.png), 数值顺序应为Z、x、y    
+  NSString *imagePath = [NSString stringWithFormat:@"%d-%d-%d.png", (int)path.z, (int)path.x, (int)path.y];
+    //本地图片的位置路径
+    NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"localTiles"];
+    //读取图片数据
+    NSData *data = [NSData dataWithContentsOfFile:[filePath stringByAppendingPathComponent:imagePath]];
+    if (data.length != 0)
+    {
+      	//把数据传入callback中
+        result(data,nil);
+    }
+    else
+    {
+      //如读取失败则传入错误信息
+       NSError *error = [NSError errorWithDomain:@"QTileLoadErrorDomain" code:-1 userInfo:@{NSLocalizedDescriptionKey: @"load tile data error"}];
+        result(nil, error);
+    }
 }
+```
 
-self.heatTileOverlay = [self constructHeatTileOverlay];
-//添加热力图到地图上
-[self.mapView addTileOverlay:self.heatTileOverlay];
+ 3.初始化QTileOverlay生成对象和生成对应的QTileOverlayView进行渲染
 
+```objective-c
+//初始化
+LocalTile *localTile = [[LocalTile alloc] init];
+//添加到mapview中
+[self.mapView addOverlay:localTile];
 
+//生成对应的QTileOverlayView
+- (QOverlayView *)mapView:(QMapView *)mapView viewForOverlay:(id<QOverlay>)overlay
+{
+    //生成瓦片图的render
+    if ([overlay isKindOfClass:[QTileOverlay class]]) {
+        QTileOverlayView *render = [[QTileOverlayView alloc] initWithTileOverlay:overlay];
+        return render;
+    }
+    return nil;
+}
+```
+
+效果如下：
+
+<img src="./image/heatmap6.png" width="300" ><img src="./image/heatmap7.png" width="300" >
+
+2）**URL方式**：用户在底图之上增加自定义2D图层，并且通过地图回调的接口将自定义瓦片的URL拼接规则设置设置给地图SDK，从而达到显示的效果。如自定义景区图层，卫星图，手绘图等。
+
+1.设置对应的URL
+
+```objective-c
+//URL为NSString格式，如：http://server/path?x={x}&y={y}&z={z}&scale={scale}，其中"{x}", "{y}", "{z}", and "{scale}"会被替换为相应的值。
+
+//谷歌地图图层的URL格式
+#define TileTemplate    @"https://mt1.google.cn/vt/x={x}&y={y}&z={z}&scale={scale}"
+```
+
+2.根据指定的URL生成QTileOverlay对象
+
+```objective-c
+//初始化QTileOverlay对象
+self.tileOverlayGG = [[QTileOverlay alloc] initWithURLTemplate:TileTemplate];
+
+/*如使用默认缓存则需在添加overlay前设置存在文件夹名。如不设置文件夹名则不适用默认的缓存
+ *如用户需使用自定义缓存，可以重载loadTileAtPath: result:方法
+*/
+self.tileOverlayGG.tileCacheDir = @"gg";
+
+//添加到mapview中
+[self.mapView addOverlay:self.tileOverlayGG];
+```
+
+3.实现QMapViewDelegate的mapView:  viewForOverlay: 函数，将瓦片显示在地图上：
+
+```objective-c
+- (QOverlayView *)mapView:(QMapView *)mapView viewForOverlay:(id<QOverlay>)overlay
+{
+    //生成瓦片图的render
+    if ([overlay isKindOfClass:[QTileOverlay class]]) {
+        QTileOverlayView *render = [[QTileOverlayView alloc] initWithTileOverlay:overlay];
+        return render;
+    }
+    return nil;
+}
 ```
 
 效果图如下：
 
-![](https://upload.cc/i1/2019/04/08/iI3FWV.png)
+<img src="./image/heatmap6.png" width="300" ><img src="./image/heatmap5.png" width="300" >
 
-#### 热力图数据更新
 
-每个地图仅支持一层热力图，当前热力图数据的更新通过已添加的，示例代码如下：
+
+#### 更换瓦片图的压盖顺序
+
+当地图同时存在多个自定义图层实例时，用户可通过调整zIndex改变各个自定义图层的压盖顺序。
 
 ```objective-c
+/*找到对应的QTileOverlayView，例如：改变tileOverlayGG对应图层的zIndex
+*通过 viewForOverlay:(id <QOverlay>)overlay 函数找到相应的图层 
+*/
+QTileOverlayView *tileOverlayView = (QTileOverlayView *)[self.mapView viewForOverlay:self.tileOverlayGG];
 
-//导入新的热力节点数据，全部更新热力图
-- (void) updateHeatTileNodes:		(NSArray *) 	heatTileNodes	
+//更改zIndex
+tileOverlayView.zIndex += 1;
 
 ```
 
-## 定位
+更改zIndex后，图层压盖顺序会立即刷新
+
+#### 移除瓦片图层
+
+通过 removeOverlay: 函数可以移除对应的瓦片图层，同时也可以通过removeOverlays: 一次移除多个瓦片图层
+
+```objective-c
+//移除单个图层
+[self.mapView removeOverlay:self.tileOverlayGG];
+
+//移除多个图层，tileOverlays为QTileOverlay数组类
+[self.mapView removeOverlay:self.tileOverlays];
+```
+
+
+
+# 定位
 
 腾讯地图SDK（IOS）封装了系统定位，方便用户使用，在使用定位功能前，需要向info.plist文件中添加定位权限：(以下二选一，两个都添加默认使用NSLocationWhenInUseUsageDescription）：
 

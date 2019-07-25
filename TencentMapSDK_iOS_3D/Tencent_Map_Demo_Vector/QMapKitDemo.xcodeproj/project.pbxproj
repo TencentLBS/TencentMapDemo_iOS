@@ -12,6 +12,12 @@
 		31BFE8DA1F3464180026C9BB /* colorSample.png in Resources */ = {isa = PBXBuildFile; fileRef = 31BFE8D91F3463FC0026C9BB /* colorSample.png */; };
 		31BFE8E61F34675B0026C9BB /* foot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 31BFE8E51F3467550026C9BB /* foot.jpg */; };
 		31BFE8E81F346D760026C9BB /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 31BFE8E71F346D6F0026C9BB /* arrow.png */; };
+		5302DFE022DC2CB700EF7DC9 /* QMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5302DFDF22DC2CB700EF7DC9 /* QMapKit.framework */; };
+		5302DFE622DC544D00EF7DC9 /* TileOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5302DFE522DC544D00EF7DC9 /* TileOverlayViewController.m */; };
+		5302DFE922DC5AD400EF7DC9 /* CustomTileOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5302DFE822DC5AD400EF7DC9 /* CustomTileOverlayViewController.m */; };
+		5302DFEC22DC5B1E00EF7DC9 /* LocalTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5302DFEB22DC5B1E00EF7DC9 /* LocalTile.m */; };
+		5302E08F22DDBC0000EF7DC9 /* localTiles in Resources */ = {isa = PBXBuildFile; fileRef = 5302E08E22DDBC0000EF7DC9 /* localTiles */; };
+		5302E09122DDC56000EF7DC9 /* QMapKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5302E09022DDC55F00EF7DC9 /* QMapKit.bundle */; };
 		539937C5225749DB0085326B /* WalkingSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539937C3225749DB0085326B /* WalkingSearchViewController.m */; };
 		539937E822574BF70085326B /* HandDrawMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539937DE22574BF70085326B /* HandDrawMapViewController.m */; };
 		539937E922574BF70085326B /* MapCoreAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539937DF22574BF70085326B /* MapCoreAnimationViewController.m */; };
@@ -79,6 +85,15 @@
 		31BFE8D91F3463FC0026C9BB /* colorSample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorSample.png; sourceTree = "<group>"; };
 		31BFE8E51F3467550026C9BB /* foot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = foot.jpg; sourceTree = "<group>"; };
 		31BFE8E71F346D6F0026C9BB /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		5302DFDF22DC2CB700EF7DC9 /* QMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QMapKit.framework; sourceTree = SOURCE_ROOT; };
+		5302DFE422DC544D00EF7DC9 /* TileOverlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TileOverlayViewController.h; sourceTree = "<group>"; };
+		5302DFE522DC544D00EF7DC9 /* TileOverlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TileOverlayViewController.m; sourceTree = "<group>"; };
+		5302DFE722DC5AD400EF7DC9 /* CustomTileOverlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTileOverlayViewController.h; sourceTree = "<group>"; };
+		5302DFE822DC5AD400EF7DC9 /* CustomTileOverlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTileOverlayViewController.m; sourceTree = "<group>"; };
+		5302DFEA22DC5B1E00EF7DC9 /* LocalTile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalTile.h; path = QMapKitDemo/Demos/Controllers/Overlay/LocalTile.h; sourceTree = SOURCE_ROOT; };
+		5302DFEB22DC5B1E00EF7DC9 /* LocalTile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocalTile.m; path = QMapKitDemo/Demos/Controllers/Overlay/LocalTile.m; sourceTree = SOURCE_ROOT; };
+		5302E08E22DDBC0000EF7DC9 /* localTiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = localTiles; sourceTree = "<group>"; };
+		5302E09022DDC55F00EF7DC9 /* QMapKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = QMapKit.bundle; path = QMapKit.framework/QMapKit.bundle; sourceTree = SOURCE_ROOT; };
 		539937C3225749DB0085326B /* WalkingSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalkingSearchViewController.m; sourceTree = "<group>"; };
 		539937C4225749DB0085326B /* WalkingSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalkingSearchViewController.h; sourceTree = "<group>"; };
 		539937DE22574BF70085326B /* HandDrawMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandDrawMapViewController.m; sourceTree = "<group>"; };
@@ -165,6 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5302DFE022DC2CB700EF7DC9 /* QMapKit.framework in Frameworks */,
 				655F304C1F1CBA8F00FA20A9 /* libsqlite3.0.tbd in Frameworks */,
 				655F304A1F1CBA8B00FA20A9 /* libc++.tbd in Frameworks */,
 			);
@@ -194,6 +210,7 @@
 		5302DFDE22DC2ABF00EF7DC9 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				5302DFDF22DC2CB700EF7DC9 /* QMapKit.framework */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -225,6 +242,8 @@
 		53993817225782830085326B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5302DFEA22DC5B1E00EF7DC9 /* LocalTile.h */,
+				5302DFEB22DC5B1E00EF7DC9 /* LocalTile.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -340,6 +359,10 @@
 				539937EF22574C2C0085326B /* OverlayViewController.m */,
 				539937F022574C2C0085326B /* TexturePolylineViewController.h */,
 				539937F222574C2C0085326B /* TexturePolylineViewController.m */,
+				5302DFE422DC544D00EF7DC9 /* TileOverlayViewController.h */,
+				5302DFE522DC544D00EF7DC9 /* TileOverlayViewController.m */,
+				5302DFE722DC5AD400EF7DC9 /* CustomTileOverlayViewController.h */,
+				5302DFE822DC5AD400EF7DC9 /* CustomTileOverlayViewController.m */,
 			);
 			path = Overlay;
 			sourceTree = "<group>";
@@ -369,6 +392,8 @@
 		65A0CDD11F1601F000811B83 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5302E09022DDC55F00EF7DC9 /* QMapKit.bundle */,
+				5302E08E22DDBC0000EF7DC9 /* localTiles */,
 				5399381322574E040085326B /* greenPin@2x.png */,
 				5399381422574E040085326B /* redPin@2x.png */,
 				319793F41F3471DB007486B9 /* ball.png */,
@@ -476,10 +501,12 @@
 				5399381622574E040085326B /* redPin@2x.png in Resources */,
 				65A0CDF21F1601F000811B83 /* heatTest_2.heat in Resources */,
 				65A0CDF01F1601F000811B83 /* good@2x.png in Resources */,
+				5302E08F22DDBC0000EF7DC9 /* localTiles in Resources */,
 				31BFE8E81F346D760026C9BB /* arrow.png in Resources */,
 				31BFE8DA1F3464180026C9BB /* colorSample.png in Resources */,
 				65A0CD971F16008B00811B83 /* LaunchScreen.storyboard in Resources */,
 				65A0CD941F16008B00811B83 /* Assets.xcassets in Resources */,
+				5302E09122DDC56000EF7DC9 /* QMapKit.bundle in Resources */,
 				31BFE8E61F34675B0026C9BB /* foot.jpg in Resources */,
 				65A0CDF31F1601F000811B83 /* marker@2x.png in Resources */,
 			);
@@ -498,17 +525,20 @@
 				539937E922574BF70085326B /* MapCoreAnimationViewController.m in Sources */,
 				65A0CD8C1F16008B00811B83 /* AppDelegate.m in Sources */,
 				5399380B22574C530085326B /* Longpress_AnnotationViewController.m in Sources */,
+				5302DFE622DC544D00EF7DC9 /* TileOverlayViewController.m in Sources */,
 				F6837A8E225C34080016A674 /* CustomCalloutViewController.m in Sources */,
 				539937FE22574C2C0085326B /* HeatViewController.m in Sources */,
 				539937FC22574C2C0085326B /* EraseLineViewController.m in Sources */,
 				539937EB22574BF70085326B /* GestureControlViewController.m in Sources */,
 				65A0CDEB1F1601F000811B83 /* EntryViewController.m in Sources */,
+				5302DFEC22DC5B1E00EF7DC9 /* LocalTile.m in Sources */,
 				5399380E22574C530085326B /* DisplaySelectedRegionViewController.m in Sources */,
 				5399380C22574C530085326B /* ChangeMapCenterViewController.m in Sources */,
 				65A0CDEC1F1601F000811B83 /* CustomAnnotationView.m in Sources */,
 				65A0CDE91F1601F000811B83 /* UserLocationViewController.m in Sources */,
 				65A0CDE81F1601F000811B83 /* CustomUserLocationViewController.m in Sources */,
 				539937C5225749DB0085326B /* WalkingSearchViewController.m in Sources */,
+				5302DFE922DC5AD400EF7DC9 /* CustomTileOverlayViewController.m in Sources */,
 				F6837A8B225C34080016A674 /* PinAnnotationViewController.m in Sources */,
 				F6837A8D225C34080016A674 /* CustomAnnotationViewController.m in Sources */,
 				539937EC22574BF70085326B /* MultiStyleViewController.m in Sources */,
@@ -659,6 +689,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/QMapKitDemo/library",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = QMapKitDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -678,6 +709,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/QMapKitDemo/library",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = QMapKitDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
