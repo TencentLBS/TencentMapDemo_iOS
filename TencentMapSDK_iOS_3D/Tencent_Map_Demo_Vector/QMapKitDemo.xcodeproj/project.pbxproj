@@ -12,12 +12,22 @@
 		31BFE8DA1F3464180026C9BB /* colorSample.png in Resources */ = {isa = PBXBuildFile; fileRef = 31BFE8D91F3463FC0026C9BB /* colorSample.png */; };
 		31BFE8E61F34675B0026C9BB /* foot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 31BFE8E51F3467550026C9BB /* foot.jpg */; };
 		31BFE8E81F346D760026C9BB /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 31BFE8E71F346D6F0026C9BB /* arrow.png */; };
-		5302DFE022DC2CB700EF7DC9 /* QMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5302DFDF22DC2CB700EF7DC9 /* QMapKit.framework */; };
 		5302DFE622DC544D00EF7DC9 /* TileOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5302DFE522DC544D00EF7DC9 /* TileOverlayViewController.m */; };
 		5302DFE922DC5AD400EF7DC9 /* CustomTileOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5302DFE822DC5AD400EF7DC9 /* CustomTileOverlayViewController.m */; };
 		5302DFEC22DC5B1E00EF7DC9 /* LocalTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5302DFEB22DC5B1E00EF7DC9 /* LocalTile.m */; };
 		5302E08F22DDBC0000EF7DC9 /* localTiles in Resources */ = {isa = PBXBuildFile; fileRef = 5302E08E22DDBC0000EF7DC9 /* localTiles */; };
-		5302E09122DDC56000EF7DC9 /* QMapKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5302E09022DDC55F00EF7DC9 /* QMapKit.bundle */; };
+		53746AF8230290520020302A /* LimitMapRectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53746AF7230290520020302A /* LimitMapRectViewController.m */; };
+		53746B08230295F60020302A /* QMapKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53746B07230295F60020302A /* QMapKit.bundle */; };
+		53746B0D230299510020302A /* POIDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53746B0C230299510020302A /* POIDetailViewController.m */; };
+		53746B10230299740020302A /* POISearchBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53746B0F230299740020302A /* POISearchBaseViewController.m */; };
+		53746B1323029B2B0020302A /* POISearchByKeywordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53746B1223029B2B0020302A /* POISearchByKeywordViewController.m */; };
+		53746B1623029BF50020302A /* POISuggestionSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53746B1523029BF50020302A /* POISuggestionSearchViewController.m */; };
+		53746B1923029C450020302A /* ReverseGeoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53746B1823029C450020302A /* ReverseGeoViewController.m */; };
+		53746B1C23029CED0020302A /* InvertGeoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53746B1B23029CED0020302A /* InvertGeoViewController.m */; };
+		53746B1F23029D1C0020302A /* DistrictSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53746B1E23029D1C0020302A /* DistrictSearchViewController.m */; };
+		53746B2323029D820020302A /* WalkingRoutePlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53746B2223029D820020302A /* WalkingRoutePlanViewController.m */; };
+		53746B2623029DC00020302A /* DrivingRoutePlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53746B2523029DC00020302A /* DrivingRoutePlanViewController.m */; };
+		53746B2923029E000020302A /* BusRoutePlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53746B2823029E000020302A /* BusRoutePlanViewController.m */; };
 		539937C5225749DB0085326B /* WalkingSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539937C3225749DB0085326B /* WalkingSearchViewController.m */; };
 		539937E822574BF70085326B /* HandDrawMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539937DE22574BF70085326B /* HandDrawMapViewController.m */; };
 		539937E922574BF70085326B /* MapCoreAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539937DF22574BF70085326B /* MapCoreAnimationViewController.m */; };
@@ -85,7 +95,6 @@
 		31BFE8D91F3463FC0026C9BB /* colorSample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorSample.png; sourceTree = "<group>"; };
 		31BFE8E51F3467550026C9BB /* foot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = foot.jpg; sourceTree = "<group>"; };
 		31BFE8E71F346D6F0026C9BB /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
-		5302DFDF22DC2CB700EF7DC9 /* QMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QMapKit.framework; sourceTree = SOURCE_ROOT; };
 		5302DFE422DC544D00EF7DC9 /* TileOverlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TileOverlayViewController.h; sourceTree = "<group>"; };
 		5302DFE522DC544D00EF7DC9 /* TileOverlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TileOverlayViewController.m; sourceTree = "<group>"; };
 		5302DFE722DC5AD400EF7DC9 /* CustomTileOverlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTileOverlayViewController.h; sourceTree = "<group>"; };
@@ -93,7 +102,29 @@
 		5302DFEA22DC5B1E00EF7DC9 /* LocalTile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalTile.h; path = QMapKitDemo/Demos/Controllers/Overlay/LocalTile.h; sourceTree = SOURCE_ROOT; };
 		5302DFEB22DC5B1E00EF7DC9 /* LocalTile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocalTile.m; path = QMapKitDemo/Demos/Controllers/Overlay/LocalTile.m; sourceTree = SOURCE_ROOT; };
 		5302E08E22DDBC0000EF7DC9 /* localTiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = localTiles; sourceTree = "<group>"; };
-		5302E09022DDC55F00EF7DC9 /* QMapKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = QMapKit.bundle; path = QMapKit.framework/QMapKit.bundle; sourceTree = SOURCE_ROOT; };
+		53746AF6230290520020302A /* LimitMapRectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LimitMapRectViewController.h; sourceTree = "<group>"; };
+		53746AF7230290520020302A /* LimitMapRectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LimitMapRectViewController.m; sourceTree = "<group>"; };
+		53746B07230295F60020302A /* QMapKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = QMapKit.bundle; path = QMapKitDemo/Library/QMapKit.framework/QMapKit.bundle; sourceTree = SOURCE_ROOT; };
+		53746B0B230299510020302A /* POIDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POIDetailViewController.h; sourceTree = "<group>"; };
+		53746B0C230299510020302A /* POIDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POIDetailViewController.m; sourceTree = "<group>"; };
+		53746B0E230299740020302A /* POISearchBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POISearchBaseViewController.h; sourceTree = "<group>"; };
+		53746B0F230299740020302A /* POISearchBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POISearchBaseViewController.m; sourceTree = "<group>"; };
+		53746B1123029B2B0020302A /* POISearchByKeywordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POISearchByKeywordViewController.h; sourceTree = "<group>"; };
+		53746B1223029B2B0020302A /* POISearchByKeywordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POISearchByKeywordViewController.m; sourceTree = "<group>"; };
+		53746B1423029BF50020302A /* POISuggestionSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POISuggestionSearchViewController.h; sourceTree = "<group>"; };
+		53746B1523029BF50020302A /* POISuggestionSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POISuggestionSearchViewController.m; sourceTree = "<group>"; };
+		53746B1723029C450020302A /* ReverseGeoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReverseGeoViewController.h; sourceTree = "<group>"; };
+		53746B1823029C450020302A /* ReverseGeoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReverseGeoViewController.m; sourceTree = "<group>"; };
+		53746B1A23029CED0020302A /* InvertGeoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvertGeoViewController.h; sourceTree = "<group>"; };
+		53746B1B23029CED0020302A /* InvertGeoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InvertGeoViewController.m; sourceTree = "<group>"; };
+		53746B1D23029D1C0020302A /* DistrictSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistrictSearchViewController.h; sourceTree = "<group>"; };
+		53746B1E23029D1C0020302A /* DistrictSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistrictSearchViewController.m; sourceTree = "<group>"; };
+		53746B2123029D820020302A /* WalkingRoutePlanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalkingRoutePlanViewController.h; sourceTree = "<group>"; };
+		53746B2223029D820020302A /* WalkingRoutePlanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalkingRoutePlanViewController.m; sourceTree = "<group>"; };
+		53746B2423029DC00020302A /* DrivingRoutePlanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrivingRoutePlanViewController.h; sourceTree = "<group>"; };
+		53746B2523029DC00020302A /* DrivingRoutePlanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrivingRoutePlanViewController.m; sourceTree = "<group>"; };
+		53746B2723029E000020302A /* BusRoutePlanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusRoutePlanViewController.h; sourceTree = "<group>"; };
+		53746B2823029E000020302A /* BusRoutePlanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusRoutePlanViewController.m; sourceTree = "<group>"; };
 		539937C3225749DB0085326B /* WalkingSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalkingSearchViewController.m; sourceTree = "<group>"; };
 		539937C4225749DB0085326B /* WalkingSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalkingSearchViewController.h; sourceTree = "<group>"; };
 		539937DE22574BF70085326B /* HandDrawMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandDrawMapViewController.m; sourceTree = "<group>"; };
@@ -180,7 +211,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5302DFE022DC2CB700EF7DC9 /* QMapKit.framework in Frameworks */,
 				655F304C1F1CBA8F00FA20A9 /* libsqlite3.0.tbd in Frameworks */,
 				655F304A1F1CBA8B00FA20A9 /* libc++.tbd in Frameworks */,
 			);
@@ -201,8 +231,19 @@
 		31DF64062248BE55007AC70E /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				53746B0A230299240020302A /* searchViews */,
 				539937C4225749DB0085326B /* WalkingSearchViewController.h */,
 				539937C3225749DB0085326B /* WalkingSearchViewController.m */,
+				53746B1123029B2B0020302A /* POISearchByKeywordViewController.h */,
+				53746B1223029B2B0020302A /* POISearchByKeywordViewController.m */,
+				53746B1423029BF50020302A /* POISuggestionSearchViewController.h */,
+				53746B1523029BF50020302A /* POISuggestionSearchViewController.m */,
+				53746B1723029C450020302A /* ReverseGeoViewController.h */,
+				53746B1823029C450020302A /* ReverseGeoViewController.m */,
+				53746B1A23029CED0020302A /* InvertGeoViewController.h */,
+				53746B1B23029CED0020302A /* InvertGeoViewController.m */,
+				53746B1D23029D1C0020302A /* DistrictSearchViewController.h */,
+				53746B1E23029D1C0020302A /* DistrictSearchViewController.m */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -210,9 +251,48 @@
 		5302DFDE22DC2ABF00EF7DC9 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				5302DFDF22DC2CB700EF7DC9 /* QMapKit.framework */,
 			);
 			path = Library;
+			sourceTree = "<group>";
+		};
+		53746AF523028FE50020302A /* LimitMapRect */ = {
+			isa = PBXGroup;
+			children = (
+				53746AF6230290520020302A /* LimitMapRectViewController.h */,
+				53746AF7230290520020302A /* LimitMapRectViewController.m */,
+			);
+			path = LimitMapRect;
+			sourceTree = "<group>";
+		};
+		53746B092302988A0020302A /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		53746B0A230299240020302A /* searchViews */ = {
+			isa = PBXGroup;
+			children = (
+				53746B0B230299510020302A /* POIDetailViewController.h */,
+				53746B0C230299510020302A /* POIDetailViewController.m */,
+				53746B0E230299740020302A /* POISearchBaseViewController.h */,
+				53746B0F230299740020302A /* POISearchBaseViewController.m */,
+			);
+			path = searchViews;
+			sourceTree = "<group>";
+		};
+		53746B2023029D4A0020302A /* RoutePlan */ = {
+			isa = PBXGroup;
+			children = (
+				53746B2123029D820020302A /* WalkingRoutePlanViewController.h */,
+				53746B2223029D820020302A /* WalkingRoutePlanViewController.m */,
+				53746B2423029DC00020302A /* DrivingRoutePlanViewController.h */,
+				53746B2523029DC00020302A /* DrivingRoutePlanViewController.m */,
+				53746B2723029E000020302A /* BusRoutePlanViewController.h */,
+				53746B2823029E000020302A /* BusRoutePlanViewController.m */,
+			);
+			path = RoutePlan;
 			sourceTree = "<group>";
 		};
 		539937FF22574C520085326B /* Interaction */ = {
@@ -315,6 +395,8 @@
 		65A0CD9F1F1601F000811B83 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				53746B092302988A0020302A /* New Group */,
+				53746AF523028FE50020302A /* LimitMapRect */,
 				271E009E22C0BF5B00DDB7D4 /* Indoor */,
 				F6837A79225C34080016A674 /* Annotation */,
 				539937FF22574C520085326B /* Interaction */,
@@ -322,6 +404,7 @@
 				31DF64062248BE55007AC70E /* Search */,
 				65A0CDAD1F1601F000811B83 /* BaseMapViewController.h */,
 				65A0CDAE1F1601F000811B83 /* BaseMapViewController.m */,
+				53746B2023029D4A0020302A /* RoutePlan */,
 				65A0CDAF1F1601F000811B83 /* Map */,
 				65A0CDBA1F1601F000811B83 /* Overlay */,
 				65A0CDC11F1601F000811B83 /* UserLocation */,
@@ -392,7 +475,7 @@
 		65A0CDD11F1601F000811B83 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5302E09022DDC55F00EF7DC9 /* QMapKit.bundle */,
+				53746B07230295F60020302A /* QMapKit.bundle */,
 				5302E08E22DDBC0000EF7DC9 /* localTiles */,
 				5399381322574E040085326B /* greenPin@2x.png */,
 				5399381422574E040085326B /* redPin@2x.png */,
@@ -506,7 +589,7 @@
 				31BFE8DA1F3464180026C9BB /* colorSample.png in Resources */,
 				65A0CD971F16008B00811B83 /* LaunchScreen.storyboard in Resources */,
 				65A0CD941F16008B00811B83 /* Assets.xcassets in Resources */,
-				5302E09122DDC56000EF7DC9 /* QMapKit.bundle in Resources */,
+				53746B08230295F60020302A /* QMapKit.bundle in Resources */,
 				31BFE8E61F34675B0026C9BB /* foot.jpg in Resources */,
 				65A0CDF31F1601F000811B83 /* marker@2x.png in Resources */,
 			);
@@ -526,6 +609,9 @@
 				65A0CD8C1F16008B00811B83 /* AppDelegate.m in Sources */,
 				5399380B22574C530085326B /* Longpress_AnnotationViewController.m in Sources */,
 				5302DFE622DC544D00EF7DC9 /* TileOverlayViewController.m in Sources */,
+				53746B1323029B2B0020302A /* POISearchByKeywordViewController.m in Sources */,
+				53746B1F23029D1C0020302A /* DistrictSearchViewController.m in Sources */,
+				53746AF8230290520020302A /* LimitMapRectViewController.m in Sources */,
 				F6837A8E225C34080016A674 /* CustomCalloutViewController.m in Sources */,
 				539937FE22574C2C0085326B /* HeatViewController.m in Sources */,
 				539937FC22574C2C0085326B /* EraseLineViewController.m in Sources */,
@@ -534,11 +620,15 @@
 				5302DFEC22DC5B1E00EF7DC9 /* LocalTile.m in Sources */,
 				5399380E22574C530085326B /* DisplaySelectedRegionViewController.m in Sources */,
 				5399380C22574C530085326B /* ChangeMapCenterViewController.m in Sources */,
+				53746B1623029BF50020302A /* POISuggestionSearchViewController.m in Sources */,
 				65A0CDEC1F1601F000811B83 /* CustomAnnotationView.m in Sources */,
+				53746B2323029D820020302A /* WalkingRoutePlanViewController.m in Sources */,
 				65A0CDE91F1601F000811B83 /* UserLocationViewController.m in Sources */,
 				65A0CDE81F1601F000811B83 /* CustomUserLocationViewController.m in Sources */,
 				539937C5225749DB0085326B /* WalkingSearchViewController.m in Sources */,
+				53746B2623029DC00020302A /* DrivingRoutePlanViewController.m in Sources */,
 				5302DFE922DC5AD400EF7DC9 /* CustomTileOverlayViewController.m in Sources */,
+				53746B2923029E000020302A /* BusRoutePlanViewController.m in Sources */,
 				F6837A8B225C34080016A674 /* PinAnnotationViewController.m in Sources */,
 				F6837A8D225C34080016A674 /* CustomAnnotationViewController.m in Sources */,
 				539937EC22574BF70085326B /* MultiStyleViewController.m in Sources */,
@@ -546,11 +636,15 @@
 				F6837A8A225C34080016A674 /* AnnotationAnimateCoordinate2ViewController.m in Sources */,
 				539937FD22574C2C0085326B /* DashLineOverlayViewController.m in Sources */,
 				F6837A90225C34080016A674 /* AnnotationCoreAnimationViewController.m in Sources */,
+				53746B1C23029CED0020302A /* InvertGeoViewController.m in Sources */,
 				F6837A91225C34080016A674 /* AnnotationAnimateCoordinateViewController.m in Sources */,
+				53746B1923029C450020302A /* ReverseGeoViewController.m in Sources */,
 				539937E822574BF70085326B /* HandDrawMapViewController.m in Sources */,
 				5399380D22574C530085326B /* ControlPanelInteractViewController.m in Sources */,
 				271E00A122C0BF9500DDB7D4 /* IndoorViewController.m in Sources */,
+				53746B10230299740020302A /* POISearchBaseViewController.m in Sources */,
 				539937FB22574C2C0085326B /* TexturePolylineViewController.m in Sources */,
+				53746B0D230299510020302A /* POIDetailViewController.m in Sources */,
 				5399381222574C810085326B /* EntryData.m in Sources */,
 				539937F922574C2C0085326B /* OverlayViewController.m in Sources */,
 				F6837A8C225C34080016A674 /* AnnotationViewController.m in Sources */,
@@ -688,8 +782,7 @@
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/QMapKitDemo/library",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/QMapKitDemo/Library",
 				);
 				INFOPLIST_FILE = QMapKitDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -708,8 +801,7 @@
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/QMapKitDemo/library",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/QMapKitDemo/Library",
 				);
 				INFOPLIST_FILE = QMapKitDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

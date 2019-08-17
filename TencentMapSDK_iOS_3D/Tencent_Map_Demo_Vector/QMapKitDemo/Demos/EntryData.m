@@ -87,6 +87,30 @@
         }
     }
     
+    // LimitMapRect Section.
+    {
+        Section *section = [[Section alloc] init];
+        section.title = @"区域限制";
+        NSMutableArray<Cell *> *cellArray = [NSMutableArray array];
+        section.cells = cellArray;
+    
+        [sectionArray addObject:section];
+    
+    
+        // Map Section.
+        {
+            Cell *cell = [[Cell alloc] init];
+        
+            cell.title = @"区域限制";
+            cell.controllerClassName = @"LimitMapRectViewController";
+        
+        
+            [cellArray addObject:cell];
+        }
+    
+    
+    }
+    
     //室内
     {
         Section *section = [[Section alloc] init];
@@ -333,6 +357,106 @@
             [cellArray addObject:cell];
         }
     }
+    
+    // 定位 Section.
+    {
+        Section *section = [[Section alloc] init];
+        section.title = @"POI检索";
+        NSMutableArray<Cell *> *cellArray = [NSMutableArray array];
+        section.cells = cellArray;
+    
+        [sectionArray addObject:section];
+    
+    // 关键字检索.
+        {
+            Cell *cell = [[Cell alloc] init];
+        
+            cell.title = @"POI关键字检索";
+            cell.controllerClassName = @"POISearchByKeywordViewController";
+        
+            [cellArray addObject:cell];
+        }
+    
+    
+        {
+            Cell *cell = [[Cell alloc] init];
+        
+            cell.title = @"POI提示检索";
+            cell.controllerClassName = @"POISuggestionSearchViewController";
+        
+            [cellArray addObject:cell];
+        }
+    
+        {
+            Cell *cell = [[Cell alloc] init];
+        
+            cell.title = @"逆地址解析(坐标转地址)";
+            cell.controllerClassName = @"ReverseGeoViewController";
+        
+            [cellArray addObject:cell];
+        }
+    
+        {
+            Cell *cell = [[Cell alloc] init];
+        
+            cell.title = @"逆地址解析(地址转坐标)";
+            cell.controllerClassName = @"InvertGeoViewController";
+        
+            [cellArray addObject:cell];
+        }
+    
+        {
+            Cell *cell = [[Cell alloc] init];
+        
+            cell.title = @"行政区域数据";
+            cell.controllerClassName = @"DistrictSearchViewController";
+        
+            [cellArray addObject:cell];
+        }
+    
+    }
+    
+    // 出行规划.
+    {
+        Section *section = [[Section alloc] init];
+        section.title = @"出行规划";
+        NSMutableArray<Cell *> *cellArray = [NSMutableArray array];
+        section.cells = cellArray;
+    
+        [sectionArray addObject:section];
+    
+    // 公交.
+        {
+            Cell *cell = [[Cell alloc] init];
+        
+            cell.title = @"公交路线规划";
+            cell.controllerClassName = @"BusRoutePlanViewController";
+        
+            [cellArray addObject:cell];
+        }
+    
+    // 驾车.
+        {
+            Cell *cell = [[Cell alloc] init];
+        
+            cell.title = @"驾车路线规划";
+            cell.controllerClassName = @"DrivingRoutePlanViewController";
+        
+            [cellArray addObject:cell];
+        }
+    
+    // 步行.
+        {
+            Cell *cell = [[Cell alloc] init];
+        
+            cell.title = @"步行路线规划";
+            cell.controllerClassName = @"WalkingRoutePlanViewController";
+        
+            [cellArray addObject:cell];
+        }
+    }
+    
+    
     
     // 定位 Section.
     {

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "EntryViewController.h"
 #import <QMapKit/QMapKit.h>
+#import <QMapKit/QMSSearchKit.h>
 
 @interface AppDelegate ()
 
@@ -22,7 +23,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // Configure API Key.
-//    [QMapServices sharedServices].APIKey = @"您的key";
+    [QMapServices sharedServices].APIKey = @"您的APIKEY";
+    
+    // 如需检索功能，请设置检索的API Key
+    [[QMSSearchServices sharedServices] setApiKey:@"您的APIKEY"];
     if ([QMapServices sharedServices].APIKey.length == 0)
     {
         NSLog(@"Please configure API key before using QMapKit.framework");

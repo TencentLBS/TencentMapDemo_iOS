@@ -1652,3 +1652,1687 @@ QIndoorInfo *indoorInfo = [[QIndoorInfo alloc] initWithBuildUid:@"******" levelN
 ### 9.实例代码
 
 实例代码请参考Demo的室内图部分
+
+# 区域限制
+
+
+
+## 1.简介：
+
+腾讯地图SDK为用户提供了区域限制的功能接口，用户可以通过该接口将地图的显示区域固定在某一场景区域当中，当设置生效时，拖动地图不会超出设定的区域。区域限制功能适用于旅游景区、商场等场景，可以搭配腾讯地图SDK的手绘图、瓦片图等功能创造丰富的场景。
+
+## 2.接口说明
+
+进行区域限制时，可以调用QMapView中的 **setLimitMapRect:  mode:** 接口， 需传入相应的区域以及对应的区域展示对齐模式
+
+```objective-c
+/**
+ * @brief  根据边界留宽显示限制地图区域范围(2D北朝上场景时)
+ * @param mapRect 待调整的地理范围
+ * @param mode    限制地区区域的对齐方式，分等宽对齐和等高对齐
+ * 当传入的mapRect的值都为0时，取消区域限制
+ */
+-(void)setLimitMapRect:(QMapRect)mapRect mode:(QMapLimitRectFitMode)mode;
+```
+
+注意：限定区域设置生效后，**地图的最小显示级别将是限制区域的最小可显示级别**，地图默认最大显示级别没有变化。如：设置的限制区域最小可显示级别为14，则地图的最小显示级别为14，用户不能缩放到小于14的显示级别。
+
+## 3.生成限制区域mapRect
+
+限制区域接口的mapRect参数是QMapRect结构（平面投影矩形），生成对应的mapRect，用户需找到平面投影矩形左上角和右下角的经纬度坐标，然后通过SDK提供的接口转换成相应的QMapRect，示例如下：
+
+**1）根据左上角和右下角的经纬度坐标生成 平面投影坐标（QMapPoint），以故宫的矩形为例子：**
+
+```objective-c
+// QMapPointForCoordinate 接口将经纬度坐标转换为平面投影坐标
+QMapPoint mapPoint1 =  		QMapPointForCoordinate(CLLocationCoordinate2DMake(39.907053,116.395984));
+    QMapPoint mapPoint2 = QMapPointForCoordinate(CLLocationCoordinate2DMake(39.900436,116.399567));
+```
+
+**2）通过两个 平面投影坐标 生成所需的QMapRect**
+
+```objective-c
+/*
+ *	 QBoundingMapRectWithPoints(QMapPoint *points, NSUInteger count) 根据平面投影坐标返回外接矩形
+ */
+	
+		// 平面投影坐标 点数组
+		QMapPoint points[2];
+    points[0] = mapPoint1;
+    points[1] = mapPoint2;
+		// 生成平面投影矩形
+    QMapRect rect = QBoundingMapRectWithPoints(points, 2);
+```
+
+**3）限制区域显示的限制方式**
+
+限制区域显示的限制方式有两种，分别以区域宽度为参考值和以区域高度为参考值
+
+```objective-c
+typedef NS_ENUM(NSInteger,QMapLimitRectFitMode) {
+    QMapLimitRectFitWidth = 0,  // 此模式会以 mapRect宽度为参考值限制地图的控制区域，保证横向区域完全展示
+    QMapLimitRectFitHeight      // 此模式会以 mapRect高度为参考值限制地图的控制区域，保证纵向区域完全展示
+};
+```
+
+**4）进行区域限制**
+
+用户生成了所需的QMapRect后可设置限制区域
+
+```objective-c
+// 以 mapRect高度为参考值限制地图的控制区域
+[self.mapView setLimitMapRect:rect mode:QMapLimitRectFitHeight];
+
+// 以 mapRect宽度为参考值限制地图的控制区域
+[self.mapView setLimitMapRect:rect mode:QMapLimitRectFitWidth];
+```
+
+效果如下：
+
+<img src="image/rect.png" width="300"><img src="image/rect2.png" width="300"> 
+
+**5）地图显示级别**
+
+在 1）中提到，限制区域生效后，地图的最小显示级别会产生变化，以下显示级别相关接口会有影响：
+
+**设置地图显示级别**
+
+```objective-c
+	// 当限制区域生效时，如果设置的显示级别小于限制区域的最小可显示级别，则设置的显示级别无效
+
+ [self.mapView setZoomLevel:7]; //如限制区域的最小可显示级别是10，设置显示级别为7则无效
+```
+
+
+
+**设置地图最小、最大显示级别**
+
+```objective-c
+/* 当限制区域生效时，如果设置的显示级别小于限制区域的最小可显示级别，限制区域最小显示级别不变；
+ *                如果设置的显示级别大于限制区域的最小可显示级别，限制区域最小显示级别为新设的值；
+ */
+
+//如限制区域的最小可显示级别是10，设置地图最小显示级别为7，限制区域最小显示级别不变，无法缩放到小于10的级别
+[self.mapView setMinZoomLevel:7 maxZoomLevel:18]; 
+
+
+//如限制区域的最小可显示级别是10，设置地图最小显示级别为7，限制区域最小显示级别不变，无法缩放到小于10的级别；设置地图最大显示级别为8，限制区域的最大、最小显示级别均为10；
+[self.mapView setMinZoomLevel:7 maxZoomLevel:8]; 
+```
+
+## 4.取消区域限制
+
+当需要取消区域限制时，用户可传入一个值都为0的QMapRect取消区域限制，方法如下：
+
+```objective-c
+// 当传入的mapRect的四个值为0时，可取消区域限制（无视对齐模式）
+    QMapRect cancelRect = QMapRectMake(0, 0, 0, 0);
+    [self.mapView setLimitMapRect:cancelRect mode:QMapLimitRectFitWidth];
+```
+
+**注意：**取消区域限制后，地图的可缩放区间恢复为地图当前的最小、最大显示级别之间。如果用户设置了限制区域后，通过 **setMinZoomLevel: maxZoomLevel:** 改变了地图的最小、最大显示级别，取消区域限制后，地图的可缩放区间为最后一个更改的最小、最大显示级别之间。
+
+
+
+# POI检索
+
+POI（Point of Interest，兴趣点）是地图中的一个重要元素，它可代表一个商铺、一个建筑物或者一个公交站等。腾讯地图iOS SDK提供给了多种POI搜索功能：POI指定地区搜索、POI周边搜索、POI矩形搜索。
+
+## 使用须知
+
+### 使用限制
+
+针对个人开发者和企业开发者，提供的服务调用量有差别，可参考[配额限制说明](https://lbs.qq.com/webservice_v1/guide-quota.html)。
+
+### 启用服务与安全设置
+
+腾讯位置服务API Key，在调用时用于唯一标识开来者身份，API KEY是各产品通用的，也就是说同一个Key可以用在地图SDK，也可以用在JavascriptAPI，也可以用在WebServiceAPI以及其它各产品中，可针对不同产品可独立启用（开关）。**若在腾讯地图SDK中使用检索功能，需勾选WebServiceAPI选项。**
+假设您的某个Key只会调用地图SDK，可在Key配置界面，将其它产品关闭，以降低安全风险。
+
+<img src="image/apikey.png" height = "400">
+
+
+
+**关于API Key安全：**
+腾讯位置服务的调用配额是开放到Key上的，为了防止您的Key被盗用，保障调用安全，我们在Key的设置中提供了多种安全策略：
+[详细使用方法请点击了解>>](https://lbs.qq.com/FAQ/key_faq.html#4)
+
+## 检索功能接入
+
+### 引入头文件
+
+**引入 QMSSearchKit.h头文件**
+
+```objective-c
+#import <QMapKit/QMSSearchKit.h>
+```
+
+**在AppDelegate.m 中设置已勾选WebServiceAPI的Key:**
+
+```objective-c
+#import <QMapKit/QMSSearchKit.h>
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    // Configure API Key.
+    [QMapServices sharedServices].APIKey = @"您的APIKey";
+    
+    // 如需检索功能，请设置检索的API Key
+    [[QMSSearchServices sharedServices] setApiKey:@"您的APIKey"];
+  
+}
+
+```
+
+**定义QMSSearcherAPI**
+
+定义主搜索对象 QMSSearcherAPI，并继承搜索协议 < QMSSearchDelegate >
+
+**构造QMSSearcherAPI**
+
+构造主搜索对象 QMSSearcherAPI，并设置代理
+
+```objective-c
+self.mySearcher = [[QMSSearcher alloc] initWithDelegate: self];
+```
+
+
+
+## 关键字搜索POI
+
+### 构建关键字搜索参数
+
+##### 1.设置关键字搜索参数 QMSPoiSearchOption, **keyword为必填字段**
+
+```objective-c
+QMSPoiSearchOption poiSearchOption = [[QMSPoiSearchOption alloc] init];
+
+[poiSearchOption setKeyword:@"餐厅"];
+// 或者
+poiSearchOption.keyword = @"餐厅";
+
+```
+
+##### 2.**page_size** 和 page_index 参数
+
+​	**page_size **为 每页条目数，最大限制为20条， 默认10条。
+
+​	**page_index** 为搜索结果的页数索引，第x页，默认为第1页。
+
+```objective-c
+//每页条目数
+[poiSearchOption setPage_size:5];
+
+poiSearchOption.page_size = 10;
+
+// 页数索引
+[poiSearchOption setPage_index: 3];
+
+self.poiSearchOption.page_index = 3;
+
+```
+
+##### 3.**filter** 参数
+
+filter为筛选条件，用户通过设置特定的条件对搜索结果进行过滤，**最多支持5个分类词**。
+
+​	搜索指定分类：
+
+​	 	例如传入“category=公交站”则最终会被组装为filter=category=公交站，筛选出包含“公交站”的结果分类
+
+```objective-c
+[poiSearchOption setFilter:@“category=公交站”];
+```
+
+​	搜索多个分类
+
+​     	举例：category=大学,中学  (以英文逗号分隔筛选条件）筛选出包含“大学,中学”的结果分类
+
+```objective-c
+[poiSearchOption setFilter:@“category=大学,中学”];
+```
+
+​	
+
+​	用户还可以传入NSString 类型数组通过 **setFilterByCategories:** 接口构建filter，最多支持5个分类词。
+
+```objective-c
+NSArray <NSString *> *filterArray = [NSArray arrayWithObjects:@"烧烤", @"日料", @"中餐", nil];
+        
+[poiSearchOption setFilterByCategories:filterArray];
+```
+
+**注：腾讯地图POI分类关键词参考: http://lbs.qq.com/webservice_v1/guide-appendix.html**
+
+##### 4.orderby参数
+
+orderby为排序方式，**目前仅支持周边搜索（boundary=nearby)**。支持按距离由近到远排序，默认取值取值：_distance, 以到boundary的中心点距离排序；当orderby为空时, 以POI权重排序。
+
+### 搜索方式
+
+**boundary** 为搜索地理范围，支持三个范围函数: 指定地区搜索，周边搜索和矩形搜索。
+
+#### 指定地区搜索接口参数：
+
+指定地区名称：boundary=region(city_name, [ auto_extend ], [ lat,lng ])
+
+​     city_name：检索区域名称， 城市名字，如北京市。
+
+​     auto_extend：可选参数。 **取值1：默认值，若当前城市搜索无结果，则自动扩大范围；**
+​                                                   **取值0：仅在当前城市搜索。**
+
+​      lat,lng：可选参数。 当用户使用泛关键词搜索时（如酒店、超市），这类搜索多为了查找附近，
+​                                            使用此参数，**搜索结果以此坐标为中心，返回就近地点**，体验更优。
+
+```objective-c
+ // 仅在北京搜索
+poiSearchOption.boundary = @"region(北京,0)"; 
+
+// 以 39.901268,116.9403854 为中心，返回就近地点搜索结果;
+poiSearchOption.boundary = @"region(北京,0, 39.901268,116.9403854)"; 
+```
+
+用户也能通过以下两个接口设置指定区域地理范围：
+
+```objective-c
+setBoundaryByRegionWithCityName: (NSString *)cityName autoExtend:(BOOL)isAutoEntend;
+
+// 以某一坐标为中心点在某城市进行检索
+setBoundaryByRegionWithCityName: (NSString *)cityName autoExtend:(BOOL)isAutoEntend center:(CLLocationCoordinate2D)coordinate;
+```
+
+
+
+##### 发起POI检索：
+
+调用QMSSearcherAPI中的 searchWithPoiSearchOption 发起指定区域检索
+
+```objective-c
+[self.mySearcher searchWithPoiSearchOption: poiSearchOption];
+```
+
+
+
+##### 回调中出解析数据
+
+当检索成功后，会调用到 searchWithPoiSearchOption: didReceiveResult: 回调函数，通过解析QMSPoiSearchResult 数据把所需的结果绘制到地图上。
+
+```objective-c
+- (void)searchWithPoiSearchOption:(QMSPoiSearchOption *)poiSearchOption didReceiveResult:(QMSPoiSearchResult *)poiSearchResult
+{
+  // 获取结果中的第一个POI数据 
+  QMSPoiData *poiData = [poiSearchResult.dataArray objectAtIndex:0];
+		
+  NSLog(@"result is: %@", self.poiSearchResult);
+  
+  // 详细POI数据解析，请参考demo
+}
+```
+
+##### 数据说明
+
+​	1）poiSearchResult.count 可以获取本次搜索结果总数
+
+​	2）poiSearchResult.dataArray 可以获取**当前page_index**搜索结果POI数组，每项为一个POI(QMSPoiData)对象
+
+​	3）QMSPoiData 可以获取以下的属性：
+
+|              属性               |                             说明                             |
+| :-----------------------------: | :----------------------------------------------------------: |
+|          NSString *id_          |                         POI唯一标识                          |
+|         NSString *title         |                           poi名称                            |
+|        NSString *address        |                             地址                             |
+|          NSString *tel          |                             电话                             |
+|       NSString *category        |                           POI分类                            |
+|         QMSPoiType type         | POI类型，值说明：0:普通POI / 1:公交车站 / 2:地铁站 / 3:公交线路 / 4:行政区划 |
+| CLLocationCoordinate2D location |                         坐标(经纬度)                         |
+|        NSArray *boundary        | 轮廓，坐标数组，面积较大的POI会有，如住宅小区。数组里为CLLocationCoordinate2D类型数据  非必有字段 |
+
+##### 效果图示例：
+
+```objective-c
+poiSearchOption.boundary = @"region(北京,0)";
+poiSearchOption.keyword  = @"餐厅";
+[self.mySearcher searchWithPoiSearchOption: poiSearchOption];
+```
+
+下图仅在地图上标记第一页的搜索结果
+
+<img src="image/keywordSearch1.png" width = "300">
+
+
+
+#### 周边搜索接口参数
+
+周边搜索：
+
+圆形区域范围 ：nearby([ lat,lng ],radius<半径/米>, [ auto_extend]) 
+             radius：半径，最大支持1000米 
+             auto_extend：可选参数,当前范围无结果时，是否自动扩大范围，取值：
+                                  	1 [默认]自动扩大范围；
+                                 	 0 不扩大
+
+​			[ lat,lng ]   		搜索结果以此坐标为中心，返回就近地点
+
+```objective-c
+// 以 (39.908491,116.374328) 为中心，搜索半径500米范围
+poiSearchOption.boundary = @"nearby(39.908491,116.374328,500,0)"; 
+```
+
+或调用 setBoundaryByNearbyWithCenterCoordinate:  radius:  autoExtend: 接口实现上述设置：
+
+```objective-c
+[poiSearchOption setBoundaryByNearbyWithCenterCoordinate:CLLocationCoordinate2DMake(39.908491,116.374328) radius:10 autoExtend:NO];
+```
+
+
+
+##### 发起POI检索：
+
+调用QMSSearcherAPI中的 searchWithPoiSearchOption 发起周边区域检索
+
+```objective-c
+[self.mySearcher searchWithPoiSearchOption: poiSearchOption];
+```
+
+
+
+##### 在回调中处理搜索数据
+
+当检索成功后，会调用到 searchWithPoiSearchOption: didReceiveResult: 回调函数，通过解析QMSPoiSearchResult 数据把所需的结果绘制到地图上。
+
+```objective-c
+- (void)searchWithPoiSearchOption:(QMSPoiSearchOption *)poiSearchOption didReceiveResult:(QMSPoiSearchResult *)poiSearchResult
+{
+  // 获取结果中的第一个POI数据 
+  QMSPoiData *poiData = [poiSearchResult.dataArray objectAtIndex:0];
+		
+  NSLog(@"result is: %@", self.poiSearchResult);
+  
+  // 详细POI数据解析，请参考demo
+}
+```
+
+QMSPoiData数据类说明请参考[数据说明](#数据说明)
+
+##### 效果图示例
+
+```objective-c
+poiSearchOption.boundary = @"nearby(39.908491,116.374328,500,0)";
+poiSearchOption.keyword  = @"餐厅";
+[self.mySearcher searchWithPoiSearchOption: poiSearchOption];
+```
+
+下图仅在地图上标记第一页的搜索结果
+
+<img src="image/keywordSearch3.png" width = "300">
+
+#### 矩形搜索接口参数
+
+[矩形搜索]：
+
+矩形范围 ：boundary=rectangle(lat,lng<左下/西南>, lat,lng<右上/东北>)
+
+​					rectangle里需传入矩形的左下角坐标和右上角坐标
+
+```objective-c
+// 在左下角(39.908491,116.374328)，右上角(39.918491,116.384328)的矩形内搜索
+poiSearchOption.boundary = @"rectangle(39.908491,116.374328,39.918491,116.384328)";
+```
+
+或使用 setBoundaryByRectangleWithleftBottomCoordinate: rightTopCoordinate: 接口设置boundary：
+
+```objective-c
+[poiSearchOption setBoundaryByRectangleWithleftBottomCoordinate:CLLocationCoordinate2DMake (39.908491,116.374328) rightTopCoordinate:CLLocationCoordinate2DMake (39.918491,116.384328)];
+```
+
+##### 发起POI检索：
+
+调用QMSSearcherAPI中的 searchWithPoiSearchOption 发起矩形区域检索
+
+```objective-c
+[self.mySearcher searchWithPoiSearchOption: poiSearchOption];
+```
+
+
+
+##### 在回调中处理搜索数据
+
+当检索成功后，会调用到 searchWithPoiSearchOption: didReceiveResult: 回调函数，通过解析QMSPoiSearchResult 数据把所需的结果绘制到地图上。
+
+```objective-c
+- (void)searchWithPoiSearchOption:(QMSPoiSearchOption *)poiSearchOption didReceiveResult:(QMSPoiSearchResult *)poiSearchResult
+{
+  // 获取结果中的第一个POI数据 
+  QMSPoiData *poiData = [poiSearchResult.dataArray objectAtIndex:0];
+		
+  NSLog(@"result is: %@", self.poiSearchResult);
+  
+  // 详细POI数据解析，请参考demo
+}
+```
+
+QMSPoiData数据类说明请参考[数据说明](#数据说明)
+
+##### 效果示例图
+
+```objective-c
+[poiSearchOption setBoundaryByRectangleWithleftBottomCoordinate:CLLocationCoordinate2DMake (39.907293,116.368935) rightTopCoordinate:CLLocationCoordinate2DMake (39.914996,116.379321)];
+
+poiSearchOption.keyword  = @"餐厅";
+
+[self.mySearcher searchWithPoiSearchOption: poiSearchOption];
+```
+
+下图仅在地图上标记第一页的搜索结果
+
+<img src="image/keywordSearch4.png" width = "300">
+
+
+
+#### 错误信息回调
+
+当检索失败时，回调函数 searchWithSearchOption: didFailWithError: 会返回对应的错误信息
+
+```objective-c
+- (void)searchWithSearchOption:(QMSSearchOption *)searchOption didFailWithError:(NSError *)error
+{
+    NSLog(@"%@",error);
+}
+```
+
+更详细设置请参考demo
+
+
+
+## 关键字提示检索
+
+关键字提示检索是指根据用户输入的关键词，给出对应的提示信息，将最有可能的搜索词呈现给用户，减少用户输入信息，大大提升用户体验。如：输入“北京”，提示“北京站”，“北京西站”等。
+
+<img src="image/sugSearch.png" width = "300">
+
+### 引入头文件
+
+**引入 QMSSearchKit.h头文件**
+
+```objective-c
+#import <QMapKit/QMSSearchKit.h>
+```
+
+**在AppDelegate.m 中设置已勾选WebServiceAPI的Key:**
+
+```objective-c
+#import <QMapKit/QMSSearchKit.h>
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    // Configure API Key.
+    [QMapServices sharedServices].APIKey = @"您的APIKey";
+    
+    // 如需检索功能，请设置检索的API Key
+    [[QMSSearchServices sharedServices] setApiKey:@"您的APIKey"];
+  
+}
+
+```
+
+**注**：请用户确认API Key已勾选WebServiceAPI选项，具体设置请参考[设置](https://lbs.qq.com/webservice_v1/index.html)
+
+**定义QMSSearcherAPI**
+
+定义主搜索对象 QMSSearcherAPI，并继承搜索协议 < QMSSearchDelegate >
+
+**构造QMSSearcherAPI**
+
+构造主搜索对象 QMSSearcherAPI，并设置代理
+
+```objective-c
+self.mySearcher = [[QMSSearcher alloc] initWithDelegate: self];
+```
+
+
+
+### 关键字提示检索参数说明
+
+设置关键字提示输入参数 QMSSuggestionSearchOption，其中 **keyword** 和 **region** 是必填字段
+
+```objective-c
+QMSSuggestionSearchOption sugOption = [[QMSSuggestionSearchOption alloc] init];
+
+sugOption.keyword = @"北京南";
+
+sugOption.region	=	@"北京"
+```
+
+其他参数说明
+
+|           属性           |                             说明                             |
+| :----------------------: | :----------------------------------------------------------: |
+|     NSString *filter     | 搜索指定分类，例如传入“category=公交站；搜索多个分类，举例：category=大学,中学 |
+|   NSNumber *region_fix   | 0：[默认]当前城市无结果时，自动扩大范围到全国匹配  1：固定在当前城市 |
+|    NSString *location    | 定位坐标，传入后，若用户搜索关键词为类别词（如酒店、餐馆时），与此坐标距离近的地点将靠前显示，格式： location=lat,lng |
+|  NSNumber *get_subpois   | 是否返回子地点，如大厦停车场、出入口等；0 [默认]不返回，1 返回 |
+|     NSNumber *policy     | 检索策略，目前支持：policy=0：默认，常规策略；policy=1：本策略主要用于收货地址、上门服务地址的填写，提高了小区类、商务楼宇、大学等分类的排序，过滤行政区、道路等分类（如海淀大街、朝阳区等），排序策略引入真实用户对输入提示的点击热度，使之更为符合此类应用场景，体验更为舒适；policy=10：出行场景（网约车） – 起点查询；policy=11：出行场景（网约车） – 终点查询 |
+| NSString *address_format |          可选值：short   返回“不带行政区划的”短地址          |
+|   NSNumber *page_index   | 页码，从1开始，最大页码需通过count进行计算，必须与page_size同时使用 |
+|   NSNumber *page_size    |       每页条数，取值范围1-20，必须与page_index 时使用        |
+
+
+
+### 发起关键字提示检索
+
+调用QMSSearcherAPI中的 searchWithSuggestionSearchOption 发起关键字提示检索
+
+```objective-c
+[self.mySearcher searchWithSuggestionSearchOption:sugOption];
+```
+
+
+
+### 在回调中处理搜索数据
+
+当检索成功后，会调用到 searchWithSuggestionSearchOption: didReceiveResult: 回调函数，通过解析QMSSuggestionResult 数据把所需的结果绘制到地图上。
+
+```objective-c
+- (void)searchWithSuggestionSearchOption:(QMSSuggestionSearchOption *)suggestionSearchOption didReceiveResult:(QMSSuggestionResult *)suggestionSearchResult
+{
+    self.sugResult = suggestionSearchResult;
+    
+    NSLog(@"suggest result:%@", suggestionSearchResult);
+}
+```
+
+在回调中，可通过QMSSuggestionResult中的dataArray获取QMSSuggestionPoiData对象，从中得到POI数据
+
+```objective-c
+// 获取第一个POI数据
+QMSSuggestionPoiData *poiData = [suggestionSearchResult.dataArray objectAtIndex:0];
+
+// 获取第一个subPOI数据
+QMSSuggestionSubPoiData *subPOIData = [suggestionSearchResult.sub_pois objectAtIndex:0];
+```
+
+
+
+**QMSSuggestionResult** 数据说明：
+
+**count**:	本次搜索结果总数
+
+**NSArray *dataArray**: 提示词数组，每项为一个POI(QMSSuggestionPoiData)对象
+
+​	**QMSSuggestionPoiData**类参数说明
+
+|              属性               |                             说明                             |
+| :-----------------------------: | :----------------------------------------------------------: |
+|          NSString *id_          |                         POI唯一标识                          |
+|         NSString *title         |                           提示文字                           |
+|        NSString *address        |                         地址详细描述                         |
+|        NSNumber *adcode         |                           邮政编码                           |
+|       NSString *province        |                              省                              |
+|         NSString *city          |                              市                              |
+|         QMSPoiType type         | POI类型，值说明：0:普通POI / 1:公交车站 / 2:地铁站 / 3:公交线路 / 4:行政区划 |
+| CLLocationCoordinate2D location |                         坐标(经纬度)                         |
+
+**NSArray *sub_pois**：子地点列表，仅在输入参数get_subpois=1时返回. 每项为一个POI(QMSSuggestionSubPoiData)对象
+
+​	 **QMSSuggestionSubPoiData**属性说明：
+
+|              属性               |      说明       |
+| :-----------------------------: | :-------------: |
+|       NSString *parent_id       | 上级POI唯一标识 |
+|          NSString *id_          |   POI唯一标识   |
+|         NSString *title         |    提示文字     |
+|        NSString *address        |  地址详细描述   |
+|        NSNumber *adcode         |    邮政编码     |
+|       NSString *province        |       省        |
+|         NSString *city          |       市        |
+| CLLocationCoordinate2D location |  坐标(经纬度)   |
+
+#### 效果示例图
+
+```objective-c
+QMSSuggestionSearchOption sugOption = [[QMSSuggestionSearchOption alloc] init];
+
+sugOption.keyword = @"北京南";
+
+sugOption.region	=	@"北京"
+  
+[self.mySearcher searchWithSuggestionSearchOption:sugOption];
+```
+
+提示输入检索结果的第一页数据
+
+<img src="image/sugSearch3.png" width = "300">
+
+点击选择北京南站后：
+
+<img src="image/sugSearch1.png" width = "300">
+
+### 错误信息回调
+
+当检索失败时，回调函数 searchWithSearchOption: didFailWithError: 会返回对应的错误信息
+
+```objective-c
+- (void)searchWithSearchOption:(QMSSearchOption *)searchOption didFailWithError:(NSError *)error
+{
+    NSLog(@"%@",error);
+}
+```
+
+更详细设置请参考demo
+
+
+
+## 逆地址解析（坐标位置描述）
+
+逆地址解析提供由坐标到坐标所在位置的文字描述的转换。输入坐标返回地理位置信息和附近poi列表。目前应用于物流、出行、O2O、社交等场景。服务响应速度快、稳定，支撑亿级调用。
+     1）满足传统对省市区、乡镇村、门牌号、道路及交叉口、河流、湖泊、桥、poi列表的需求。
+     2）业界首创，提供易于人理解的地址描述：海淀区中钢国际广场(欧美汇购物中心北)。
+     3）提供精准的商圈、知名的大型区域、附近知名的一级地标、代表当前位置的二级地标等。
+
+### 引入头文件
+
+**引入 QMSSearchKit.h头文件**
+
+```objective-c
+#import <QMapKit/QMSSearchKit.h>
+```
+
+**在AppDelegate.m 中设置已勾选WebServiceAPI的Key:**
+
+```objective-c
+#import <QMapKit/QMSSearchKit.h>
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    // Configure API Key.
+    [QMapServices sharedServices].APIKey = @"您的APIKey";
+    
+    // 如需检索功能，请设置检索的API Key
+    [[QMSSearchServices sharedServices] setApiKey:@"您的APIKey"];
+  
+}
+
+```
+
+**注**：请用户确认API Key已勾选WebServiceAPI选项，具体设置请参考[设置](https://lbs.qq.com/webservice_v1/index.html)
+
+**定义QMSSearcherAPI**
+
+定义主搜索对象 QMSSearcherAPI，并继承搜索协议 < QMSSearchDelegate >
+
+**构造QMSSearcherAPI**
+
+构造主搜索对象 QMSSearcherAPI，并设置代理
+
+```objective-c
+self.mySearcher = [[QMSSearcher alloc] initWithDelegate: self];
+```
+
+### 逆地址解析接口参数
+
+设置逆地址解析检索参数 QMSReverseGeoCodeSearchOption，其中 location 为必填字段
+
+```objective-c
+QMSReverseGeoCodeSearchOption revGeoOption = [QMSReverseGeoCodeSearchOption alloc] init];
+  
+[revGeoOption setLocationWithCenterCoordinate:CLLocationCoordinate2DMake(39.907053,116.395984)];
+```
+
+参数说明：
+
+**NSString** ***location**： 位置坐标，格式：  location=lat<纬度>,lng<经度>
+
+**NSString *poi_options**：用于控制POI列表：
+
+​		 **1 poi_options=address_format=short**
+
+ 		  返回短地址，缺省时返回长地址
+
+ 		 **2 poi_options=radius=5000**
+
+ 		 半径，取值范围 1-5000（米）
+
+​		 **3 poi_options=page_size=20**
+
+​		  每页条数，取值范围 1-20
+
+​		  **4 poi_options=page_index=1**
+
+​		  页码，取值范围 1-20
+
+​		  **注：分页时page_size与page_index参数需要同时使用**
+
+​		   **5 poi_options=policy=1/2/3/4/5**
+
+​			  控制返回场景，
+
+​		  	policy=1[默认] 以地标+主要的路+近距离POI为主，着力描述当前位置；
+
+​		 	  policy=2 到家场景：筛选合适收货的POI，并会细化收货地址，精确到楼栋；
+
+​		  	 policy=3 出行场景：过滤掉车辆不易到达的POI(如一些景区内POI)，增加道路出入口、交叉口、大区域出				入口类POI，排序会根据真实API大用户的用户点击自动优化。
+
+​				policy=4 社交签到场景，针对用户签到的热门地点进行优先排序。
+
+​		  	  policy=5 位置共享场景，用户经常用于发送位置、位置分享等场景的热门地点优先排序
+
+​		  **6 poi_options=category=分类词1,分类词2，**
+
+​		  	指定分类，多关键词英文分号分隔；
+
+​		 	（支持类别参见：[附录](https://lbs.qq.com/webservice_v1/guide-appendix.html)）
+
+​		  【单个参数写法示例】：
+
+ 				**poi_options=address_format=short**
+
+ 		【多个参数英文分号间隔，写法示例】：
+
+ 				 **poi_options=address_format=short;radius=5000;**
+
+ 				 **page_size=20;page_index=1;policy=2**
+
+```objective-c
+revGeoOption.poi_options = @"address_format=short";
+
+revGeoOption.poi_options = @"address_format=short;radius=5000;page_size=20;page_index=1;policy=2";
+```
+
+**BOOL** get_poi：是否返回周边POI列表 默认不返回
+
+
+
+### 发起逆地址解析检索
+
+调用QMSSearcherAPI中的 searchWithReverseGeoCodeSearchOption 发起逆地址解析检索
+
+```objective-c
+[self.mySearcher searchWithReverseGeoCodeSearchOption:revGeoOption];
+```
+
+
+
+### 在回调中处理搜索数据
+
+当检索成功后，会调用到 searchWithReverseGeoCodeSearchOption: didReceiveResult: 回调函数，通过解析QMSReverseGeoCodeSearchResult 数据把所需的结果绘制到地图上。
+
+```objective-c
+- (void)searchWithReverseGeoCodeSearchOption:(QMSReverseGeoCodeSearchOption *)reverseGeoCodeSearchOption didReceiveResult:(QMSReverseGeoCodeSearchResult *)reverseGeoCodeSearchResult
+{
+    self.revResult = reverseGeoCodeSearchResult;
+    NSLog(@"get result %@",self.revResult);   
+}
+```
+
+QMSReverseGeoCodeSearchResult 属性说明：
+
+|                        属性                         |                         说明                          |
+| :-------------------------------------------------: | :---------------------------------------------------: |
+|                  NSString *address                  |                       地址描述                        |
+| QMSReGeoCodeFormattedAddresses *formatted_addresses |                       位置描述                        |
+|       QMSAddressComponent *address_component        |        地址部件，address不满足需求时可自行拼接        |
+|             QMSReGeoCodeAdInfo *ad_info             |                     行政区划信息                      |
+|   QMSReGeoCodeAddressReference *address_reference   |                   坐标相对位置参考                    |
+|                 NSArray *poisArray                  | POI数组，对象中每个子项为一个POI(QMSReGeoCodePoi)对象 |
+|                NSUInteger poi_count                 |                  查询的周边poi的总数                  |
+
+从poisArray中可获取地址附近的POI （QMSReGeoCodePoi 类）信息，属性说明：
+
+|              属性               |                 说明                  |
+| :-----------------------------: | :-----------------------------------: |
+|          NSString *id_          |              POI唯一标识              |
+|         NSString *title         |                poi名称                |
+|        NSString *address        |                 地址                  |
+|       NSString *category        |                POI分类                |
+| CLLocationCoordinate2D location |             坐标(经纬度)              |
+|        double _distance         | 该POI到逆地址解析传入的坐标的直线距离 |
+
+QMSReverseGeoCodeSearchResult 属性说明表格的其他类详情请参考 QMSSearchResult.h文件。
+
+#### 效果示例图：
+
+```objective-c
+QMSReverseGeoCodeSearchOption *revGeoOption = [[QMSReverseGeoCodeSearchOption alloc] init];
+    
+[revGeoOption setLocationWithCenterCoordinate:coordinate];
+ 
+[revGeoOption setGet_poi:YES];
+
+revGeoOption.poi_options = @"page_size=5;page_index=1";
+    
+[self.mySearcher searchWithReverseGeoCodeSearchOption:revGeoOption];
+```
+
+在地上长按生成标记点：
+
+<img src="image/revSearch.png" width = "300">
+
+逆地址解析的信息：
+
+<img src="image/revSearch1.png" width = "300">
+
+### 错误信息回调
+
+当检索失败时，回调函数 searchWithSearchOption: didFailWithError: 会返回对应的错误信息
+
+```objective-c
+- (void)searchWithSearchOption:(QMSSearchOption *)searchOption didFailWithError:(NSError *)error
+{
+    NSLog(@"%@",error);
+}
+```
+
+更详细设置请参考demo
+
+
+
+## 地址解析（地址转坐标）
+
+地址解析提供由地址描述到所述位置坐标的转换，与逆地址解析的过程正好相反。
+
+
+
+### 引入头文件
+
+**引入 QMSSearchKit.h头文件**
+
+```objective-c
+#import <QMapKit/QMSSearchKit.h>
+```
+
+**在AppDelegate.m 中设置已勾选WebServiceAPI的Key:**
+
+```objective-c
+#import <QMapKit/QMSSearchKit.h>
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    // Configure API Key.
+    [QMapServices sharedServices].APIKey = @"您的APIKey";
+    
+    // 如需检索功能，请设置检索的API Key
+    [[QMSSearchServices sharedServices] setApiKey:@"您的APIKey"];
+  
+}
+
+```
+
+**注**：请用户确认API Key已勾选WebServiceAPI选项，具体设置请参考[设置](https://lbs.qq.com/webservice_v1/index.html)
+
+**定义QMSSearcherAPI**
+
+定义主搜索对象 QMSSearcherAPI，并继承搜索协议 < QMSSearchDelegate >
+
+**构造QMSSearcherAPI**
+
+构造主搜索对象 QMSSearcherAPI，并设置代理
+
+```objective-c
+self.mySearcher = [[QMSSearcher alloc] initWithDelegate: self];
+```
+
+
+
+### 地址解析接口参数
+
+设置地址解析检索参数 QMSGeoCodeSearchOption，其中 address 为必填字段
+
+NSString *address： 必填	用于做地理编码的地址	 比如:address=北京市海淀区彩和坊路海淀西大街74号
+
+NSString *region：    指定地址所属城市	例如:region=北京
+
+示例：
+
+```objective-c
+QMSGeoCodeSearchOption *geoOption = [[QMSGeoCodeSearchOption alloc] init];
+[geoOption setAddress:@"北京市海淀区彩和坊路海淀西大街74号"];
+[geoOption setRegion:@"北京"];
+```
+
+
+
+### 发起地址解析检索
+
+调用QMSSearcherAPI中的 searchWithGeoCodeSearchOption 发起地址解析检索
+
+```objective-c
+[self.mySearcher searchWithGeoCodeSearchOption:revGeoOption];
+```
+
+
+
+### 在回调中处理搜索数据
+
+当检索成功后，会调用到 searchWithGeoCodeSearchOption: didReceiveResult: 回调函数，通过解析QMSGeoCodeSearchResult 数据把所需的结果绘制到地图上。
+
+```objective-c
+- (void)searchWithGeoCodeSearchOption:(QMSGeoCodeSearchOption *)geoCodeSearchOption didReceiveResult:(QMSGeoCodeSearchResult *)geoCodeSearchResult
+{ 
+    NSLog(@"geoCodeResult: %@", geoCodeSearchResult);
+}
+```
+
+QMSReverseGeoCodeSearchResult类属性说明：
+
+|                  属性                   |         说明         |
+| :-------------------------------------: | :------------------: |
+|     CLLocationCoordinate2D location     | 解析到的坐标(经纬度) |
+| QMSAddressComponent *address_components |   解析后的地址部件   |
+|        QMSGeoCodeAdInfo *ad_info        |     行政区划信息     |
+
+表格中的QMSAddressComponent 和 QMSGeoCodeAdInfo 详细类别请参考QMSSearchResult.h文件说明
+
+#### 效果示例图：
+
+```objective-c
+QMSGeoCodeSearchOption *geoOption = [[QMSGeoCodeSearchOption alloc] init];
+[geoOption setAddress:@"北京市海淀区彩和坊路海淀西大街74号"];
+[geoOption setRegion:@"北京"];
+[self.mySearcher searchWithGeoCodeSearchOption:revGeoOption];
+```
+
+根据地址检索出的结果生成对应的POI点：
+
+<img src="image/inverSearch.png" width = "300">
+
+POI信息详情：
+
+<img src="image/inverSearch1.png" width = "300">
+
+### 错误信息回调
+
+当检索失败时，回调函数 searchWithSearchOption: didFailWithError: 会返回对应的错误信息
+
+```objective-c
+- (void)searchWithSearchOption:(QMSSearchOption *)searchOption didFailWithError:(NSError *)error
+{
+    NSLog(@"%@",error);
+}
+```
+
+更详细设置请参考demo
+
+
+
+## 行政区域检索
+
+行政区域检索功能提供中国标准行政区划数据，可用于生成城市列表控件等功能时使用。
+
+### 引入头文件
+
+**引入 QMSSearchKit.h头文件**
+
+```objective-c
+#import <QMapKit/QMSSearchKit.h>
+```
+
+**在AppDelegate.m 中设置已勾选WebServiceAPI的Key:**
+
+```objective-c
+#import <QMapKit/QMSSearchKit.h>
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    // Configure API Key.
+    [QMapServices sharedServices].APIKey = @"您的APIKey";
+    
+    // 如需检索功能，请设置检索的API Key
+    [[QMSSearchServices sharedServices] setApiKey:@"您的APIKey"];
+}
+```
+
+**注**：请用户确认API Key已勾选WebServiceAPI选项，具体设置请参考[设置](https://lbs.qq.com/webservice_v1/index.html)
+
+**定义QMSSearcherAPI**
+
+定义主搜索对象 QMSSearcherAPI，并继承搜索协议 < QMSSearchDelegate >
+
+**构造QMSSearcherAPI**
+
+构造主搜索对象 QMSSearcherAPI，并设置代理
+
+```objective-c
+self.mySearcher = [[QMSSearcher alloc] initWithDelegate: self];
+```
+
+
+
+### 行政区域检索接口参数
+
+设置关键字行政区域检索参数 QMSDistrictSearchSearchOption，其中 keyword 为必填字段
+
+```objective-c
+QMSDistrictSearchSearchOption *distOpt = [[QMSDistrictSearchSearchOption alloc] init];
+[distOpt setKeyword:@"北京"];
+```
+
+参数说明：
+
+NSString *keyword：搜索关键词： 
+									1.支持输入一个文本关键词 ：keyword=北京
+									2.支持多个行政区划代码，英文逗号分隔：keyword=130681,419001
+
+
+
+设置全部行政区域检索参数 QMSDistrictListSearchOption
+
+```objective-c
+QMSDistrictListSearchOption *listOpt = [[QMSDistrictListSearchOption alloc] init];
+```
+
+该参数无必填字段，初始化后即可发起行政区域检索。
+
+
+
+设置子级行政区域检索参数 QMSDistrictChildrenSearchOption
+
+```objective-c
+QMSDistrictChildrenSearchOption *childOpt = [[QMSDistrictChildrenSearchOption alloc] init];
+[childOpt setID:@"110000"];
+```
+
+参数说明：
+
+**NSString *ID：父级行政区划ID，缺省时则返回最顶级行政区划**
+
+
+
+### 发起行政区域检索
+
+调用QMSSearcherAPI中的 searchWithDistrictSearchSearchOption 发起行政区域检索
+
+```objective-c
+ [self.mySearcher searchWithDistrictSearchSearchOption:distOpt];
+```
+
+
+
+调用QMSSearcherAPI中的 searchWithDistrictListSearchOption 发起全国行政区域检索
+
+```objective-c
+[self.mySearcher searchWithDistrictListSearchOption:listOpt];
+```
+
+
+
+调用QMSSearcherAPI中的 searchWithDistrictChildrenSearchOption 发起子级行政区域检索
+
+```objective-c
+[self.mySearcher searchWithDistrictChildrenSearchOption:childOpt];
+```
+
+
+
+### 在回调中处理搜索数据
+
+当检索成功后，会调用到 searchWithDistrictSearchOption: didReceiveResult: 回调函数，通过解析QMSDistrictSearchResult 数据把所需的结果绘制到地图上。
+
+```objective-c
+- (void)searchWithDistrictSearchOption:(QMSDistrictBaseSearchOption *)districtSearchOption didRecevieResult:(QMSDistrictSearchResult *)districtSearchResult
+{
+    self.distResult = districtSearchResult;
+    NSLog(@"%@",self.distResult);
+}
+```
+
+**QMSDistrictSearchResult**类属性说明：
+
+**NSArray<NSArray<QMSDistrictData  *>  *>  *result**：结果数组，第0项，代表一级行政区划，第1项代表二级行政区划，以此类推；使用getchildren接口时，仅为指定父级行政区划的子级； **元素类型包含QMSDistrictData元素的数组**
+
+**QMSDistrictData**类属性说明：
+
+|              属性               |                             说明                             |
+| :-----------------------------: | :----------------------------------------------------------: |
+|          NSString *id_          | 行政区划唯一标识；注：省直辖地区，在数据表现上有一个重复的虚拟节点（其id最后两位为99），其目的是为了表明省直辖关系而增加的，开发者可根据实际需要选用 |
+|         NSString *name          |                       简称，如“内蒙古”                       |
+|       NSString *fullname        |                    全称，如“内蒙古自治区”                    |
+| CLLocationCoordinate2D location |                      中心点坐标(经纬度)                      |
+|   NSArray<NSString *> *pinyin   | 行政区划拼音，每一下标为一个字的全拼，如：["nei","meng","gu"] |
+|    NSArray<NSNumber *> *cidx    |              子级行政区划在下级数组中的下标位置              |
+
+**获取检索结果result里的数据可以参考demo**
+
+#### 效果示例图
+
+使用 QMSDistrictSearchSearchOption参数搜索 “北京”：
+
+```objective-c
+QMSDistrictSearchSearchOption *distOpt = [[QMSDistrictSearchSearchOption alloc] init];
+[distOpt setKeyword:@"北京"];
+[self.mySearcher searchWithDistrictSearchSearchOption:distOpt];
+```
+
+<img src="image/distSearch.png" width = "300">
+
+
+
+使用 QMSDistrictListSearchOption参数搜索：
+
+```objective-c
+QMSDistrictListSearchOption *listOpt = [[QMSDistrictListSearchOption alloc] init];
+[self.mySearcher searchWithDistrictListSearchOption:listOpt];
+```
+
+<img src="image/distList.png" width = "300">
+
+
+
+使用 QMSDistrictChildrenSearchOption参数搜索"110000"：
+
+```objective-c
+QMSDistrictChildrenSearchOption *childOpt = [[QMSDistrictChildrenSearchOption alloc] init];
+[childOpt setID:@"110000"];
+[self.mySearcher searchWithDistrictChildrenSearchOption:childOpt];
+```
+
+<img src="image/distChild.png" width = "300">
+
+
+
+### 错误信息回调
+
+当检索失败时，回调函数 searchWithSearchOption: didFailWithError: 会返回对应的错误信息
+
+```objective-c
+- (void)searchWithSearchOption:(QMSSearchOption *)searchOption didFailWithError:(NSError *)error
+{
+    NSLog(@"%@",error);
+}
+```
+
+更详细设置请参考demo
+
+
+
+# 出行规划
+
+腾讯地图SDK 检索API，提供多种交通方式的路线计算能力，包括：
+        1. 驾车（driving）：支持结合实时路况、少收费、不走高速等多种偏好，精准预估到达时间（ETA）；
+        2. 步行（walking）：基于步行路线规划。
+
+3. 公交（transit）：支持公共汽车、地铁等多种公共交通工具的换乘方案计算；
+
+
+
+## 驾车路线规划
+
+### 引入头文件
+
+**引入 QMSSearchKit.h头文件**
+
+```objective-c
+#import <QMapKit/QMSSearchKit.h>
+```
+
+**在AppDelegate.m 中设置已勾选WebServiceAPI的Key:**
+
+```objective-c
+#import <QMapKit/QMSSearchKit.h>
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    // Configure API Key.
+    [QMapServices sharedServices].APIKey = @"您的APIKey";
+    
+    // 如需检索功能，请设置检索的API Key
+    [[QMSSearchServices sharedServices] setApiKey:@"您的APIKey"];
+}
+```
+
+**注**：请用户确认API Key已勾选WebServiceAPI选项，具体设置请参考[设置](https://lbs.qq.com/webservice_v1/index.html)
+
+**定义QMSSearcherAPI**
+
+定义主搜索对象 QMSSearcherAPI，并继承搜索协议 < QMSSearchDelegate >
+
+**构造QMSSearcherAPI**
+
+构造主搜索对象 QMSSearcherAPI，并设置代理
+
+```objective-c
+self.mySearcher = [[QMSSearcher alloc] initWithDelegate: self];
+```
+
+
+
+### 设置驾车路线规划参数
+
+设置 QMSDrivingRouteSearchOption 参数
+
+```objective-c
+  QMSDrivingRouteSearchOption *drivingOpt = [[QMSDrivingRouteSearchOption alloc] init];
+  [drivingOpt setPolicyWithType:QMSDrivingRoutePolicyTypeLeastTime];
+  [drivingOpt setFrom:@"39.983906,116.307999"];
+  [drivingOpt setTo:@"39.979381,116.314128"];
+```
+
+其中 from 和 to 是必填字段
+
+QMSDrivingRouteSearchOption 参数说明
+
+|          属性          |                             说明                             |
+| :--------------------: | :----------------------------------------------------------: |
+|     NSString *from     |           起点坐标 格式：from=lat<纬度>,lng<经度>            |
+|   NSString *from_poi   | 起点POI ID，传入后，优先级高于from（坐标）样例: 4077524088693206111 |
+|  NSString *from_track  | 起点轨迹，可通过setTrackPoints生成. 格式样例：40.037029,116.316633,16,500,160…. |
+|      NSString *to      |            终点坐标 格式：to=lat<纬度>,lng<经度>             |
+|    NSString *to_poi    | 终点POI ID（可通过腾讯位置服务地点搜索服务得到），当目的地为较大园区、小区时，会以引导点做为终点（如出入口等），体验更优；<br />该参数优先级高于to（坐标），但是当目的地无引导点数据或POI ID失效时，仍会使用to（坐标）作为终点  样例: 4077524088693206111 |
+|    NSString *policy    | 路线规划条件 参考一下枚举值: LEAST_TIME 表示速度优先；LEAST_FEE 表示费用优先；LEAST_DISTANCE 表示距离优先；REAL_TRAFFIC 表示根据实时路况计算最优路线 |
+|  NSString *waypoints   |     途径点,元素类型为CLLocationCoordinate2D的NSValue类型     |
+|  NSNumber    *heading  | 在起点位置时的车头方向，数值型，取值范围0至360（0度代表正北，顺时针一周360度）<br />传入车头方向，对于车辆所在道路的判断非常重要，直接影响路线计算的效果 |
+|   NSNumber    *speed   | [from辅助参数]速度，单位：米/秒，默认3。 当速度低于1.39米/秒时，heading将被忽略 |
+| NSNumber    *accuracy  | [from辅助参数]定位精度，单位：米，取>0数值，默认5。 当定位精度>30米时heading参数将被忽略 |
+| NSString *plate_number | 车牌号，填入后，路线引擎会根据车牌对限行区域进行避让，不填则不不考虑限行问题 |
+
+
+
+### 发起驾车路线检索
+
+调用QMSSearcherAPI中的 searchWithDrivingRouteSearchOption 发起驾车路线检索
+
+```objective-c
+[self.mySearcher searchWithDrivingRouteSearchOption:drivingOpt];
+```
+
+
+
+### 在回调中处理搜索数据
+
+当检索成功后，会调用到 searchWithDrivingRouteSearchOption: didReceiveResult: 回调函数，通过解析QMSDrivingRouteSearchResult 数据把所需的结果绘制到地图上。
+
+```objective-c
+- (void)searchWithDrivingRouteSearchOption:(QMSDrivingRouteSearchOption *)drivingRouteSearchOption didRecevieResult:(QMSDrivingRouteSearchResult *)drivingRouteSearchResult
+{
+    self.drivingRouteResult = drivingRouteSearchResult;
+    
+    NSLog(@"Result: %@", self.drivingRouteResult);
+}
+```
+
+QMSDrivingRouteSearchResult类属性说明：
+
+**NSArray *routes**：路径规划方案数组, 元素类型为QMSRoutePlan
+
+获取routes元素的方式请参考demo
+
+**QMSRoutePlan**类（路径规划的路线方案）说明：
+
+|        属性         |                             说明                             |
+| :-----------------: | :----------------------------------------------------------: |
+|   NSString *mode    |                         方案交通方式                         |
+|  CGFloat distance   |                     方案整体距离 单位:米                     |
+|  CGFloat duration   |               方案估算时间 单位:分钟 四舍五入                |
+| NSString *direction |                       方案整体方向描述                       |
+|  NSArray *polyline  | 方案路线坐标点串, 导航方案经过的点, 每个step中会根据索引取得自己所对应的路段,类型为encode的CLLocationCoordinate2D。**具体获取方式可参考demo** |
+|   NSArray *steps    |        标记如何通过一个路段的信息，类型为QMSRouteStep        |
+
+QMSRouteStep类的详细属性请参考 QMSSearchResult.h文件。
+
+QMSRouteStep中一重要属性需说明：
+
+​	**NSArray *polyline_idx**：阶段路线坐标点串在方案路线坐标点串的位置，从经纬度数组中 根据索引查询这一段路的途经点。 在WebService原始接口做了除2处理, 数据类型为NSNumber。polyline_idx[0]:起点索引，polyline_idx[1]:终点索引。
+
+获取到的起点索引和终点索引代表着 QMSRoutePlan类中的 NSArray *polyline 相应元素索引的坐标点串值。
+
+具体的使用方式请参考demo
+
+#### 效果示例图
+
+```objective-c
+QMSDrivingRouteSearchOption *drivingOpt = [[QMSDrivingRouteSearchOption alloc] init];
+[drivingOpt setPolicyWithType:QMSDrivingRoutePolicyTypeLeastTime];
+[drivingOpt setFrom:@"39.983906,116.307999"];
+[drivingOpt setTo:@"39.979381,116.314128"];
+```
+
+（数据解析请参考demo）
+
+<img src="image/driveRoute.png" width = "300">
+
+### 错误信息回调
+
+当检索失败时，回调函数 searchWithSearchOption: didFailWithError: 会返回对应的错误信息
+
+```objective-c
+- (void)searchWithSearchOption:(QMSSearchOption *)searchOption didFailWithError:(NSError *)error
+{
+    NSLog(@"%@",error);
+}
+```
+
+更详细设置请参考demo
+
+
+
+## 步行路线规划
+
+### 引入头文件
+
+**引入 QMSSearchKit.h头文件**
+
+```objective-c
+#import <QMapKit/QMSSearchKit.h>
+```
+
+**在AppDelegate.m 中设置已勾选WebServiceAPI的Key:**
+
+```objective-c
+#import <QMapKit/QMSSearchKit.h>
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    // Configure API Key.
+    [QMapServices sharedServices].APIKey = @"您的APIKey";
+    
+    // 如需检索功能，请设置检索的API Key
+    [[QMSSearchServices sharedServices] setApiKey:@"您的APIKey"];
+}
+```
+
+**注**：请用户确认API Key已勾选WebServiceAPI选项，具体设置请参考[设置](https://lbs.qq.com/webservice_v1/index.html)
+
+**定义QMSSearcherAPI**
+
+定义主搜索对象 QMSSearcherAPI，并继承搜索协议 < QMSSearchDelegate >
+
+**构造QMSSearcherAPI**
+
+构造主搜索对象 QMSSearcherAPI，并设置代理
+
+```objective-c
+self.mySearcher = [[QMSSearcher alloc] initWithDelegate: self];
+```
+
+
+
+### 设置步行路线规划参数
+
+设置 QMSWalkingRouteSearchOption 参数
+
+```objective-c
+QMSWalkingRouteSearchOption *walkingOpt = [[QMSWalkingRouteSearchOption alloc] init];
+[walkingOpt setFrom:@"39.983906,116.307999"];
+[walkingOpt setTo:@"39.979381,116.314128"];
+```
+
+其中 from 和 to 是必填字段。
+
+NSString *from 起点坐标 格式：from=lat<纬度>,lng<经度>
+
+NSString *to      终点坐标 格式：to=lat<纬度>,lng<经度>
+
+### 发起步行路线检索
+
+调用QMSSearcherAPI中的 searchWithWalkingRouteSearchOption 发起步行路线检索
+
+```objective-c
+[self.mySearcher searchWithWalkingRouteSearchOption:walkingOpt];
+```
+
+
+
+### 在回调中处理搜索数据
+
+当检索成功后，会调用到 searchWithWalkingRouteSearchOption: didReceiveResult: 回调函数，通过解析QMSWalkingRouteSearchResult 数据把所需的结果绘制到地图上。
+
+```objective-c
+- (void)searchWithWalkingRouteSearchOption:(QMSWalkingRouteSearchOption *) walkingRouteSearchOption didRecevieResult:(QMSWalkingRouteSearchResult *) walkingRouteSearchResult
+{
+    self.walkingRouteResult = walkingRouteSearchResult;
+    
+    NSLog(@"Result: %@", self.walkingRouteResult);
+}
+```
+
+QMSWalkingRouteSearchResult类属性说明：
+
+**NSArray *routes**：路径规划方案数组, 元素类型为QMSRoutePlan
+
+获取routes元素的方式请参考demo
+
+**QMSRoutePlan**类（路径规划的路线方案）说明：
+
+**QMSRoutePlan**类（路径规划的路线方案）说明：
+
+|        属性         |                             说明                             |
+| :-----------------: | :----------------------------------------------------------: |
+|   NSString *mode    |                         方案交通方式                         |
+|  CGFloat distance   |                     方案整体距离 单位:米                     |
+|  CGFloat duration   |               方案估算时间 单位:分钟 四舍五入                |
+| NSString *direction |                       方案整体方向描述                       |
+|  NSArray *polyline  | 方案路线坐标点串, 导航方案经过的点, 每个step中会根据索引取得自己所对应的路段,类型为encode的CLLocationCoordinate2D。**具体获取方式可参考demo** |
+|   NSArray *steps    |        标记如何通过一个路段的信息，类型为QMSRouteStep        |
+
+QMSRouteStep类的详细属性请参考 QMSSearchResult.h文件。
+
+QMSRouteStep中一重要属性需说明：
+
+​	**NSArray *polyline_idx**：阶段路线坐标点串在方案路线坐标点串的位置，从经纬度数组中 根据索引查询这一段路的途经点。 在WebService原始接口做了除2处理, 数据类型为NSNumber。polyline_idx[0]:起点索引，polyline_idx[1]:终点索引。
+
+获取到的起点索引和终点索引代表着 QMSRoutePlan类中的 NSArray *polyline 相应元素索引的坐标点串值。
+
+具体的使用方式请参考demo
+
+
+
+#### 效果示例图
+
+```objective-c
+QMSWalkingRouteSearchOption *walkingOpt = [[QMSWalkingRouteSearchOption alloc] init];
+[walkingOpt setFrom:@"39.983906,116.307999"];
+[walkingOpt setTo:@"39.979381,116.314128"];
+[self.mySearcher searchWithWalkingRouteSearchOption:walkingOpt];
+```
+
+（数据解析请参考demo）
+
+<img src="image/walkRoute.png" width = "300">
+
+### 错误信息回调
+
+当检索失败时，回调函数 searchWithSearchOption: didFailWithError: 会返回对应的错误信息
+
+```objective-c
+- (void)searchWithSearchOption:(QMSSearchOption *)searchOption didFailWithError:(NSError *)error
+{
+    NSLog(@"%@",error);
+}
+```
+
+更详细设置请参考demo
+
+
+
+## 公交路线规划
+
+### 引入头文件
+
+**引入 QMSSearchKit.h头文件**
+
+```objective-c
+#import <QMapKit/QMSSearchKit.h>
+```
+
+**在AppDelegate.m 中设置已勾选WebServiceAPI的Key:**
+
+```objective-c
+#import <QMapKit/QMSSearchKit.h>
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    // Configure API Key.
+    [QMapServices sharedServices].APIKey = @"您的APIKey";
+    
+    // 如需检索功能，请设置检索的API Key
+    [[QMSSearchServices sharedServices] setApiKey:@"您的APIKey"];
+}
+```
+
+**注**：请用户确认API Key已勾选WebServiceAPI选项，具体设置请参考[设置](https://lbs.qq.com/webservice_v1/index.html)
+
+**定义QMSSearcherAPI**
+
+定义主搜索对象 QMSSearcherAPI，并继承搜索协议 < QMSSearchDelegate >
+
+**构造QMSSearcherAPI**
+
+构造主搜索对象 QMSSearcherAPI，并设置代理
+
+```objective-c
+self.mySearcher = [[QMSSearcher alloc] initWithDelegate: self];
+```
+
+
+
+### 设置公交路线规划参数
+
+设置 QMSBusingRouteSearchOption 参数
+
+```objective-c
+QMSBusingRouteSearchOption *busOpt = [[QMSBusingRouteSearchOption alloc] init];
+[busOpt setFrom:@"40.015109,116.313543"];
+[busOpt setTo:@"40.151850,116.296881"];
+[busOpt setPolicyWithType:QMSBusingRoutePolicyTypeLeastTime];
+```
+
+其中 from 和 to 是必填字段。
+
+**NSString *from** 	起点坐标 格式：from=lat<纬度>,lng<经度>
+
+**NSString *to**      	终点坐标 格式：to=lat<纬度>,lng<经度>
+
+**NSString *policy**  路线规划优先条件（非必填） 
+
+​	1) 排序策略，以下三选一：
+
+​     		policy=LEAST_TIME：时间短（默认）
+
+​     		policy=LEAST_TRANSFER：少换乘
+
+​    		 policy=LEAST_WALKING：少步行
+
+​    2) 额外限制条件
+
+​     		可与排序策略配合使用，如：policy=LEAST_TRANSFER,NO_SUBWAY）：NO_SUBWAY ，不坐地铁
+
+**NSDate *departure_time** 	出发时间，用于过滤掉非运营时段的线路，不传时默认使用当前时间(非必填)
+
+
+
+### 发起公交路线检索
+
+调用QMSSearcherAPI中的 searchWithBusingRouteSearchOption 发起公交路线检索
+
+```objective-c
+ [self.mySearcher searchWithBusingRouteSearchOption:busOpt];
+```
+
+### 在回调中处理搜索数据
+
+当检索成功后，会调用到 searchWithBusingRouteSearchOption: didReceiveResult: 回调函数，通过解析QMSBusingRouteSearchResult 数据把所需的结果绘制到地图上。
+
+```objective-c
+- (void)searchWithBusingRouteSearchOption:(QMSBusingRouteSearchOption *) busingRouteSearchOption didRecevieResult:(QMSBusingRouteSearchResult *) busingRouteSearchResult
+{
+    self.busRouteResult = busingRouteSearchResult;
+    
+  	// 获取第一个路线
+    NSLog(@"bus result is: %@", self.busRouteResult.routes[0]);
+    
+}
+```
+
+QMSBusingRouteSearchResult类属性说明：
+
+**NSArray *routes**：路径规划方案数组, 元素类型QMSBusingRoutePlan
+
+可在routes中获取不同的路线
+
+**QMSBusingRoutePlan**类属性说明：
+
+|       属性       |                   说明                    |
+| :--------------: | :---------------------------------------: |
+| CGFloat distance |               距离 单位:米                |
+| CGFloat duration |          时间 单位:分钟 四舍五入          |
+| NSString *bounds |      路线bounds，用于显示地图时使用       |
+|  NSArray *steps  | 分段描述 类型为:QMSBusingSegmentRoutePlan |
+
+从属性 steps 中可获得公交分段方案（QMSBusingSegmentRoutePlan），解析后的数据可用于在地图上绘制路线。
+
+**QMSBusingSegmentRoutePlan**类属性说明：
+
+|        属性         |                             说明                             |
+| :-----------------: | :----------------------------------------------------------: |
+|   NSString *mode    | 标记路径规划类型 "DRIVING":驾车 "WALKING":步行 "TRANSIT":公交 |
+|  CGFloat distance   |                         距离 单位:米                         |
+|  CGFloat duration   |                   时间 单位:分钟 四舍五入                    |
+|    CGFloat price    |                   阶段路线所花费用 单位:元                   |
+| NSString *direction |                           方向描述                           |
+|  NSArray *polyline  | 方案路线坐标点串, 导航方案经过的点, 每个step中会根据索引取得自己所对应的路段,类型为encode的CLLocationCoordinate2D |
+|   NSArray *lines    |   同个路段多趟车的选择, 元素类型QMSBusingRouteTransitLine    |
+
+ NSArray *polyline 解析后的数据可以用于绘制分段的polyline，具体获取方式可参考demo
+
+**QMSBusingRouteTransitLine**类说明：
+
+QMSBusingRouteTransitLine 为同个路段多趟车的选择
+
+|                属性                |                             说明                             |
+| :--------------------------------: | :----------------------------------------------------------: |
+|         NSString *vehicle          |                           交通工具                           |
+|           NSString *id_            |                              id                              |
+|          CGFloat distance          |                           距离(米)                           |
+|      NSTimeInterval duration       |                        预计耗时(分钟)                        |
+|          NSString *title           |                             标题                             |
+|         NSArray *polyline          | 途经点数组，类型为encode的CLLocationCoordinate2D，具体获取方式可参考demo |
+|      NSInteger station_count       |                          经停站数目                          |
+| NSArray<QMSBusStation *> *stations |             上车站数组，元素类型为QMSBusStation              |
+|  QMSStationEntrance *destination   |                          目的地地址                          |
+|        QMSBusStation *geton        |                            上车站                            |
+|       QMSBusStation *getoff        |                            下车站                            |
+
+QMSBusStation，QMSStationEntrance等类详情请参考 QMSSearchResult.h 文件。
+
+#### 效果示例图
+
+```objective-c
+QMSBusingRouteSearchOption *busOpt = [[QMSBusingRouteSearchOption alloc] init];
+[busOpt setFrom:@"40.015109,116.313543"];
+[busOpt setTo:@"40.151850,116.296881"];
+[busOpt setPolicyWithType:QMSBusingRoutePolicyTypeLeastTime];
+[self.mySearcher searchWithBusingRouteSearchOption:busOpt];
+```
+
+（数据解析请参考demo）
+
+<img src="image/busRoute.png" width = "300">
+
+### 错误信息回调
+
+当检索失败时，回调函数 searchWithSearchOption: didFailWithError: 会返回对应的错误信息
+
+```objective-c
+- (void)searchWithSearchOption:(QMSSearchOption *)searchOption didFailWithError:(NSError *)error
+{
+    NSLog(@"%@",error);
+}
+```
+
+更详细设置请参考demo
