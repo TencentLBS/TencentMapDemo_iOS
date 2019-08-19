@@ -256,18 +256,11 @@
     [self.navigationController.toolbar setHidden:NO];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    [self.searchController.searchBar setHidden:NO];
-}
-
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.navigationController.toolbar setHidden:YES];
-    [self.searchController.searchBar setHidden:YES];
+    [self.searchController setActive:NO];
 }
 
 @end

@@ -64,10 +64,6 @@
 
 - (void)districtSearch:(NSString *)keyword
 {
-    [self.dataList removeAllObjects];
-    [self.tableView reloadData];
-    
-    
     if (self.segment.selectedSegmentIndex == 0 && keyword.length != 0) {
         
         // 关键字区域检索设置
@@ -92,6 +88,8 @@
 {
     [self.tableView setHidden:NO];
     [self.dataList removeAllObjects];
+    [self.tableView reloadData];
+    
     if (self.segment.selectedSegmentIndex == 1)
         {
         QMSDistrictListSearchOption *listOpt = [[QMSDistrictListSearchOption alloc] init];
@@ -255,7 +253,7 @@
 {
     [super viewWillDisappear:animated];
     
-    [self.searchController.searchBar setHidden:YES];
+    [self.searchController setActive:NO];
     
     [self.navigationController.toolbar setHidden:YES];
 }
@@ -263,8 +261,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    [self.searchController.searchBar setHidden:NO];
     
     [self.navigationController.toolbar setHidden:NO];
 }
