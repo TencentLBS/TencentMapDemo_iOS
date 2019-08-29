@@ -17,7 +17,6 @@
 		5302DFEC22DC5B1E00EF7DC9 /* LocalTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5302DFEB22DC5B1E00EF7DC9 /* LocalTile.m */; };
 		5302E08F22DDBC0000EF7DC9 /* localTiles in Resources */ = {isa = PBXBuildFile; fileRef = 5302E08E22DDBC0000EF7DC9 /* localTiles */; };
 		53746AF8230290520020302A /* LimitMapRectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53746AF7230290520020302A /* LimitMapRectViewController.m */; };
-		53746B08230295F60020302A /* QMapKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53746B07230295F60020302A /* QMapKit.bundle */; };
 		53746B0D230299510020302A /* POIDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53746B0C230299510020302A /* POIDetailViewController.m */; };
 		53746B10230299740020302A /* POISearchBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53746B0F230299740020302A /* POISearchBaseViewController.m */; };
 		53746B1323029B2B0020302A /* POISearchByKeywordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53746B1223029B2B0020302A /* POISearchByKeywordViewController.m */; };
@@ -104,7 +103,6 @@
 		5302E08E22DDBC0000EF7DC9 /* localTiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = localTiles; sourceTree = "<group>"; };
 		53746AF6230290520020302A /* LimitMapRectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LimitMapRectViewController.h; sourceTree = "<group>"; };
 		53746AF7230290520020302A /* LimitMapRectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LimitMapRectViewController.m; sourceTree = "<group>"; };
-		53746B07230295F60020302A /* QMapKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = QMapKit.bundle; path = QMapKitDemo/Library/QMapKit.framework/QMapKit.bundle; sourceTree = SOURCE_ROOT; };
 		53746B0B230299510020302A /* POIDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POIDetailViewController.h; sourceTree = "<group>"; };
 		53746B0C230299510020302A /* POIDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POIDetailViewController.m; sourceTree = "<group>"; };
 		53746B0E230299740020302A /* POISearchBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POISearchBaseViewController.h; sourceTree = "<group>"; };
@@ -475,7 +473,6 @@
 		65A0CDD11F1601F000811B83 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				53746B07230295F60020302A /* QMapKit.bundle */,
 				5302E08E22DDBC0000EF7DC9 /* localTiles */,
 				5399381322574E040085326B /* greenPin@2x.png */,
 				5399381422574E040085326B /* redPin@2x.png */,
@@ -589,7 +586,6 @@
 				31BFE8DA1F3464180026C9BB /* colorSample.png in Resources */,
 				65A0CD971F16008B00811B83 /* LaunchScreen.storyboard in Resources */,
 				65A0CD941F16008B00811B83 /* Assets.xcassets in Resources */,
-				53746B08230295F60020302A /* QMapKit.bundle in Resources */,
 				31BFE8E61F34675B0026C9BB /* foot.jpg in Resources */,
 				65A0CDF31F1601F000811B83 /* marker@2x.png in Resources */,
 			);
@@ -788,7 +784,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"${inherited}",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tencent.QMapKitDemo-3D";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -807,7 +806,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"${inherited}",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tencent.QMapKitDemo-3D";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
