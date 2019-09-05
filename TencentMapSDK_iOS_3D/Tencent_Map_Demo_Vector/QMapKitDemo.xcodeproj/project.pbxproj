@@ -46,6 +46,9 @@
 		5399381222574C810085326B /* EntryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5399381122574C810085326B /* EntryData.m */; };
 		5399381522574E040085326B /* greenPin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5399381322574E040085326B /* greenPin@2x.png */; };
 		5399381622574E040085326B /* redPin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5399381422574E040085326B /* redPin@2x.png */; };
+		53AF26E623192F99009689F4 /* QMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53AF26E523192F98009689F4 /* QMapKit.framework */; };
+		53AF26EC231CAD74009689F4 /* QMapFoundationKitPrivate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53AF26EB231CAD74009689F4 /* QMapFoundationKitPrivate.framework */; };
+		53AF26EF231CAEB9009689F4 /* RouteNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AF26EE231CAEB9009689F4 /* RouteNameViewController.m */; };
 		655F304A1F1CBA8B00FA20A9 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 655F30491F1CBA8B00FA20A9 /* libc++.tbd */; };
 		655F304C1F1CBA8F00FA20A9 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 655F304B1F1CBA8F00FA20A9 /* libsqlite3.0.tbd */; };
 		65A0CD891F16008B00811B83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A0CD881F16008B00811B83 /* main.m */; };
@@ -159,6 +162,10 @@
 		5399381122574C810085326B /* EntryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryData.m; sourceTree = "<group>"; };
 		5399381322574E040085326B /* greenPin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greenPin@2x.png"; sourceTree = "<group>"; };
 		5399381422574E040085326B /* redPin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPin@2x.png"; sourceTree = "<group>"; };
+		53AF26E523192F98009689F4 /* QMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QMapKit.framework; sourceTree = "<group>"; };
+		53AF26EB231CAD74009689F4 /* QMapFoundationKitPrivate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QMapFoundationKitPrivate.framework; sourceTree = "<group>"; };
+		53AF26ED231CAEB9009689F4 /* RouteNameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouteNameViewController.h; sourceTree = "<group>"; };
+		53AF26EE231CAEB9009689F4 /* RouteNameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouteNameViewController.m; sourceTree = "<group>"; };
 		655F30491F1CBA8B00FA20A9 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		655F304B1F1CBA8F00FA20A9 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		65A0CD841F16008B00811B83 /* QMapKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QMapKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -209,8 +216,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53AF26E623192F99009689F4 /* QMapKit.framework in Frameworks */,
 				655F304C1F1CBA8F00FA20A9 /* libsqlite3.0.tbd in Frameworks */,
 				655F304A1F1CBA8B00FA20A9 /* libc++.tbd in Frameworks */,
+				53AF26EC231CAD74009689F4 /* QMapFoundationKitPrivate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +258,8 @@
 		5302DFDE22DC2ABF00EF7DC9 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				53AF26EB231CAD74009689F4 /* QMapFoundationKitPrivate.framework */,
+				53AF26E523192F98009689F4 /* QMapKit.framework */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -444,6 +455,8 @@
 				5302DFE522DC544D00EF7DC9 /* TileOverlayViewController.m */,
 				5302DFE722DC5AD400EF7DC9 /* CustomTileOverlayViewController.h */,
 				5302DFE822DC5AD400EF7DC9 /* CustomTileOverlayViewController.m */,
+				53AF26ED231CAEB9009689F4 /* RouteNameViewController.h */,
+				53AF26EE231CAEB9009689F4 /* RouteNameViewController.m */,
 			);
 			path = Overlay;
 			sourceTree = "<group>";
@@ -628,6 +641,7 @@
 				F6837A8B225C34080016A674 /* PinAnnotationViewController.m in Sources */,
 				F6837A8D225C34080016A674 /* CustomAnnotationViewController.m in Sources */,
 				539937EC22574BF70085326B /* MultiStyleViewController.m in Sources */,
+				53AF26EF231CAEB9009689F4 /* RouteNameViewController.m in Sources */,
 				F6837A8F225C34080016A674 /* ShowRelatedAnnotationViewController.m in Sources */,
 				F6837A8A225C34080016A674 /* AnnotationAnimateCoordinate2ViewController.m in Sources */,
 				539937FD22574C2C0085326B /* DashLineOverlayViewController.m in Sources */,

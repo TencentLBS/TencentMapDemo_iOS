@@ -12,7 +12,142 @@ API是提供给具有一定IOS开发经验和了解面向对象概念的开发�
 
 # 配置
 
-## 工程配置
+## 自动部署
+
+用户使用腾讯地图 iOS SDK 支持项目开发时，可以通过 Cocoapods 自动部署将 SDK 添加到工程当中。用户需要8.0版本以上的 Xcode 进行开发。**自动部署目前仅支持 3D 地图 iOS SDK 4.2.6.2 及以上版本**。
+
+### 1.获取Cocoapods
+
+CocoaPods 是一种支援 Swift 和 Objective-C  项目的第三方库资源管理器，用户可通过 Cocoapods 获取腾讯地图 iOS SDK。
+
+#### 安装 Cocoapods
+
+1. **配置 ruby 的软件源**
+
+   由于默认的 ruby 的软件源（https://rubygems.org/）被墙阻拦导致 CocoaPods 安装失败，因此需要更新一下 ruby 的源。依次执行如下命令：
+
+   ```bash
+   #(查看当前ruby的源) 
+   gem sources -l 
+   
+    #(移除当前ruby的源)
+   gem sources --remove https://rubygems.org/ 
+   
+   #(设置当前ruby源为淘宝源)
+   gem sources -a https://ruby.taobao.org/  
+   
+   #(再次查看当前ruby的源)
+   gem sources -l 
+   ```
+
+   完成上述命令后，显示如下文字则表示更新成功
+
+   ```bash
+   *** CURRENT SOURCES *** https://ruby.taobao.org/
+   ```
+
+2. **升级 gem**
+
+   将 gem 的版本更新到最新确保 Cocoapods 安装成功
+
+   ```bash
+   sudo gem update --system
+   ```
+
+3. **安装 Cocoapods**
+
+   若您的 OS X 为10.11及以前的版本，请使用一下命令安装 Cocoapods：
+
+   ```bash
+   sudo gem install cocoapods pod setup
+   ```
+
+   若您的 OS X 版本大于10.11，请使用一下命令安装 Cocoapods：
+
+   ```bash
+   sudo gem install -n /usr/local/bin cocoapods pod setup
+   ```
+
+   注：Cocoapods 安装过程可能会耗时较长，也有可能受网络的状况导致失败，如果安装失败请多次尝试
+
+### 2.通过 Cocoapods 安装 SDK
+
+1. **创建 Podfile**
+
+   在当前 **工程文件 (.xcodeproj) 所在文件夹**下创建一个名为 Podfile 的文件。Podfile 内容如下：
+
+   ```ruby
+   platform :ios, "8.0" 						#手机系统版本
+   target "QMapKitDemo" do					#工程的名字
+   	pod 'TencentMap-SDK'					#地图SDK
+   end
+   
+   #当有多个target时，不同的target也需要各自设置
+   #target "QMapKitDemo1" do					#工程的名字
+   #	pod 'TencentMap-SDK'					  #地图SDK
+   #end
+   
+   #target "QMapKitDemo2" do					#工程的名字
+   #	pod 'TencentMap-SDK'					  #地图SDK
+   #end
+   ```
+
+
+
+2. **安装SDK**
+
+   ```bash
+   #用于保证本地地图相关 SDK 为最新版 
+   pod repo update 
+   
+   #安装 SDK
+   pod install
+   ```
+
+   
+
+3. **命令执行成功后，会生成 .xcworkspace 文件，打开.xcworkspace 文件以启动工程（注意：此时不能同时开启.xcodeproj文件，示例：**
+
+<img src = "https://upload.cc/i1/2019/08/30/9AKkch.png" width = 500>
+
+
+
+### 升级 SDK
+
+若已通过自动部署安装了腾讯地图 iOS SDK，想要更新到最新版本，可在 Podfile 文件所在目录下执行以下指令：
+
+```bash
+pod repo update #用于保证本地地图相关SDK为最新版 
+pod update
+```
+
+ 
+
+### 安装指定版本 SDK
+
+自动部署目前仅支持地图 iOS SDK 4.2.6.2及以上版本，使用指定版本 SDK，需修改 Podfile 文件，示例：
+
+```ruby
+platform :ios, "8.0" 						#手机系统版本
+target "QMapKitDemo" do					#工程的名字
+	pod 'TencentMap-SDK', '~> 4.2.6.2'	#在此修改或添加 3D SDK 版本号
+end
+```
+
+然后执行命令：
+
+```bash
+#用于保证本地地图相关 SDK 为最新版 
+pod repo update 
+
+#安装 SDK
+pod install
+
+```
+
+
+
+## 手动配置
 
 这里我们提供XCode的腾讯地图SDK工程配置方法。
 
@@ -1364,6 +1499,175 @@ tileOverlayView.zIndex += 1;
 //移除多个图层，tileOverlays为QTileOverlay数组类
 [self.mapView removeOverlay:self.tileOverlays];
 ```
+
+
+
+## 动态路名
+
+路名文本信息标记 QPolylineView 的各路段名字或其他信息显示，可以用于显示导航的多路段名字或者路线规划路段名字等场景，示例如下：
+
+<img src = "https://upload.cc/i1/2019/09/03/jNvHTQ.png" width = 300 >
+
+### 接入接口
+
+路名文本信息是 QPolylineView 里的属性 QText text，用户在创建 QPolylineView 类时对 text 属性进行赋值即可实现路名信息的展示。
+
+```objective-c
+/**
+ * @brief  线的名字属性. 可为线的各子部分显示不同的名字，层级与POI label相同
+ */
+@property(nonatomic, strong) QText     *text;
+```
+
+##### 特别说明：
+
+**由于 QText 层级与 POI label 相同，需保证最上层显示的文本信息中 QTextStyle priority为QTextPriority_High 以及对应的 overlayview 的displayLevel 为QOverlayLevelAboveRoads 或者QOverlayLevelAboveBuildings 方可正常显示路名信息。**
+
+
+
+### QText 类说明
+
+QText 类包含了文本信息的显示样式和数据，用户可以自行配置对应的信息与数据。
+
+| 属性                              | 说明                                                         |
+| --------------------------------- | ------------------------------------------------------------ |
+| QTextStyle   *style               | 文本信息的显示样式                                           |
+| NSArray<QSegmentText *> *segments | 文本信息的数据。可沿路径显示，可在每段(QSegmentText)显示不同的文本 |
+
+初始化 QText 实例：
+
+```objective-c
+// 创建 QSegmentText 数组
+NSMutableArray<QSegmentText *> *segs = [NSMutableArray array];
+QTextStyle *style = [[QTextStyle alloc] init];
+......
+......
+// 初始化 QText 实例
+QText *route = [[QText alloc] initWithSegments:segs];
+route.style = style;
+```
+
+
+
+#### QTextStyle 类说明
+
+用户可在 QTextStyle 类中配置自定义的文本信息，文本信息的显示样式支持适时修改。
+
+| 属性                      | 说明             |
+| ------------------------- | ---------------- |
+| UIColor    *textColor     | 字的颜色         |
+| UIColor    *strokeColor   | 字的描边色       |
+| CGFloat   fontSize        | 字的字号. 默认14 |
+| QTextPriority    priority | 字的优先级       |
+
+**QTextPriority 特别说明：**
+
+```objective-c
+**
+*  @brief 文本显示的优先级. 可用于在文本有碰撞时决定压盖关系. 当多个文本间有碰撞时更高的优先显示.
+*         默认为QTextPriority_High
+*  @note  仅在文本信息间发生碰撞时，才需将低层级的文本信息priority设为QTextPriority_Normal
+*/
+typedef enum QRTextPriority {
+    QTextPriority_Normal,       ///< 普通优先级
+    QTextPriority_High          ///< 高优先级
+} QTextPriority;
+```
+
+**当只绘制一条路线的路名时， 请保持 priority 为 QTextPriority_High，否则文本信息无法显示在路线上。**
+
+实例化示例：
+
+```objective-c
+QTextStyle *style = [[QTextStyle alloc] init];
+style.textColor = [UIColor blackColor];
+style.strokeColor = [UIColor whiteColor];
+style.fontSize = 12;
+style.priority = QTextPriority_High;	/// priority 默认值为 QTextPriority_High
+```
+
+
+
+#### QSegmentText 类说明
+
+用户通过设置 QSegmentText 里的属性对相应的轨迹点串的路名信息进行设定。
+
+| 属性           | 说明                                             |
+| -------------- | ------------------------------------------------ |
+| int startIndex | 本段在轨迹点串中的起始下标. 从0开始              |
+| int endIndex   | 本段在轨迹点串中的终止下标. 请确保大于startIndex |
+| NSString *name | 本段的文本内容                                   |
+
+实例化示例：
+
+```objective-c
+QSegmentText *s1 = [[QSegmentText alloc] init];
+
+// 起点为 0 索引值的polyline坐标
+s1.startIndex = 0;
+
+// 终点为 3 索引值的polyline坐标
+s1.endIndex = 3;
+
+// 这段路线的路名
+s1.name = @"第一条线";
+```
+
+
+
+### 传入路名文本信息
+
+用户获取了相应的路段路名信息后，在 **mapView: viewForOverlay:** 接口把路名文本信息传入，示例如下：
+
+```objective-c
+- (QOverlayView *)mapView:(QMapView *)mapView viewForOverlay:(id<QOverlay>)overlay
+{
+    if ([overlay isKindOfClass:[QPolyline class]])
+    {
+      QTexturePolylineView *polylineRender = [[QTexturePolylineView alloc] initWithPolyline:overlay];
+        polylineRender.borderColor = [UIColor colorWithRed:1 green:0.2 blue:0.12 alpha:1];
+        ......
+        ......
+        // polylineRender 的 displayLevel需要设置为 QOverlayLevelAboveBuildings 或 QOverlayLevelAboveRoads
+        polylineRender.displayLevel = QOverlayLevelAboveBuildings;
+//        polylineRender.displayLevel = QOverlayLevelAboveRoads;
+        
+        polylineRender.drawSymbol = YES;
+        polylineRender.drawType = QTextureLineDrawType_ColorLine;
+      
+      // 创建 QSegmentText 数组
+        NSMutableArray<QSegmentText *> *segs = [NSMutableArray array];
+        QTextStyle *style = [[QTextStyle alloc] init];
+      	QSegmentText *s1 = [[QSegmentText alloc] init];
+        ......
+        ......
+        // 初始化 QText 实例
+        QText *route = [[QText alloc] initWithSegments:segs];
+        route.style = style;
+        // 传入相应文本信息
+        polylineRender.text = route;
+        return polylineRender;  
+        }
+    
+    return nil;
+}
+```
+
+效果示例：
+
+<img src = "https://upload.cc/i1/2019/09/03/g5KrF0.png" width = 300>
+
+### 文本信息碰撞
+
+当绘制的两个 polylineView 相交时，两个 polylineView 的文本信息便有可能发生碰撞。需要显示的文本信息需将 QTextStyle 的 priority 设置为 QTextPriority_High，不需要显示的文本信息则将 QTextStyle 的 priority 设置为 QTextPriority_Normal。**文本信息显示样式支持动态修改**。
+
+如：第一条线的 priority 为 QTextPriority_Normal，第二条线的 priority 为 QTextPriority_High，其中两段的文本信息发生碰撞，只会显示第一条路线的文本信息。效果如下：
+
+<img src = "https://upload.cc/i1/2019/09/03/PfFzkc.png" width = 300 >
+
+
+
+更详细的示例请参考 demo 里的 RouteNameViewController 示例。
 
 
 

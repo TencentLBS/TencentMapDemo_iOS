@@ -346,6 +346,16 @@
             
             [cellArray addObject:cell];
         }
+    
+        // Route Name
+            {
+                Cell *cell = [[Cell alloc] init];
+            
+                cell.title = @"动态路名";
+                cell.controllerClassName = @"RouteNameViewController";
+            
+                [cellArray addObject:cell];
+            }
         
         // 路线擦除
         {
