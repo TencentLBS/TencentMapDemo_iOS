@@ -1,0 +1,1021 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>自定义纹理折线 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="overlay-polygon.html" />
+    
+    
+    <link rel="prev" href="overlay-polyline.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" >
+            
+                <span>
+            
+                    
+                    工程配置
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../intro/intro-auto.html">
+            
+                <a href="../intro/intro-auto.html">
+            
+                    
+                    自动部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../intro/intro-manual.html">
+            
+                <a href="../intro/intro-manual.html">
+            
+                    
+                    手动配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="../intro/intro-key.html">
+            
+                <a href="../intro/intro-key.html">
+            
+                    
+                    申请和设置开发秘钥
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" >
+            
+                <span>
+            
+                    
+                    地图显示
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="../basicMap/basicMap-init.html">
+            
+                <a href="../basicMap/basicMap-init.html">
+            
+                    
+                    地图实例化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="../basicMap/basicMap-type.html">
+            
+                <a href="../basicMap/basicMap-type.html">
+            
+                    
+                    设置地图类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="../basicMap/basicMap-gesture.html">
+            
+                <a href="../basicMap/basicMap-gesture.html">
+            
+                    
+                    地图手势设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.4" data-path="../basicMap/basicMap-camera.html">
+            
+                <a href="../basicMap/basicMap-camera.html">
+            
+                    
+                    地图视野
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5" data-path="../basicMap/basicMap-touch.html">
+            
+                <a href="../basicMap/basicMap-touch.html">
+            
+                    
+                    地图点击事件回调
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.6" data-path="../basicMap/basicMap-ui.html">
+            
+                <a href="../basicMap/basicMap-ui.html">
+            
+                    
+                    UI设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" >
+            
+                <span>
+            
+                    
+                    地图标注
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="../annotation/annotation-point.html">
+            
+                <a href="../annotation/annotation-point.html">
+            
+                    
+                    点标注
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" >
+            
+                <span>
+            
+                    
+                    图形绘制
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.1" data-path="overlay-polyline.html">
+            
+                <a href="overlay-polyline.html">
+            
+                    
+                    折线和虚线
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="5.1.2" data-path="overlay-texture.html">
+            
+                <a href="overlay-texture.html">
+            
+                    
+                    自定义纹理折线
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3" data-path="overlay-polygon.html">
+            
+                <a href="overlay-polygon.html">
+            
+                    
+                    多边形
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.4" data-path="overlay-circle.html">
+            
+                <a href="overlay-circle.html">
+            
+                    
+                    圆
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.5" data-path="overlay-remove.html">
+            
+                <a href="overlay-remove.html">
+            
+                    
+                    移除地图上的Overlay
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.6" data-path="overlay-heat.html">
+            
+                <a href="overlay-heat.html">
+            
+                    
+                    热力图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.7" data-path="overlay-tile.html">
+            
+                <a href="overlay-tile.html">
+            
+                    
+                    自定义瓦片
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.8" data-path="overlay-text.html">
+            
+                <a href="overlay-text.html">
+            
+                    
+                    动态路名
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" >
+            
+                <span>
+            
+                    
+                    定位
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1.1" data-path="../location/location.html">
+            
+                <a href="../location/location.html">
+            
+                    
+                    定位
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" >
+            
+                <span>
+            
+                    
+                    区域限制
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1.1" data-path="../limit/limit-rect.html">
+            
+                <a href="../limit/limit-rect.html">
+            
+                    
+                    区域限制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" >
+            
+                <span>
+            
+                    
+                    POI检索
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1.1" data-path="../search/search-note.html">
+            
+                <a href="../search/search-note.html">
+            
+                    
+                    使用须知
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.1.2" data-path="../search/search-import.html">
+            
+                <a href="../search/search-import.html">
+            
+                    
+                    检索功能接入
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.1.3" data-path="../search/search-poi-keyword.html">
+            
+                <a href="../search/search-poi-keyword.html">
+            
+                    
+                    关键字搜索POI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.1.4" data-path="../search/search-keyword.html">
+            
+                <a href="../search/search-keyword.html">
+            
+                    
+                    关键字提示检索
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.1.5" data-path="../search/search-coord-loc.html">
+            
+                <a href="../search/search-coord-loc.html">
+            
+                    
+                    逆地址解析（坐标位置描述）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.1.6" data-path="../search/search-loc-coord.html">
+            
+                <a href="../search/search-loc-coord.html">
+            
+                    
+                    地址解析（地址转坐标）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.1.7" data-path="../search/search-district.html">
+            
+                <a href="../search/search-district.html">
+            
+                    
+                    行政区域检索
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="9.1" >
+            
+                <span>
+            
+                    
+                    出行规划
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1.1" data-path="../route/route-drive.html">
+            
+                <a href="../route/route-drive.html">
+            
+                    
+                    驾车路线规划
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.2" data-path="../route/route-walk.html">
+            
+                <a href="../route/route-walk.html">
+            
+                    
+                    步行路线规划
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.3" data-path="../route/route-bus.html">
+            
+                <a href="../route/route-bus.html">
+            
+                    
+                    公交路线规划
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >自定义纹理折线</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x81EA;&#x5B9A;&#x4E49;&#x7EB9;&#x7406;">&#x81EA;&#x5B9A;&#x4E49;&#x7EB9;&#x7406;</h1>
+<p>&#x5BF9;&#x666E;&#x901A;&#x6298;&#x7EBF;&#x8BBE;&#x7F6E;&#x81EA;&#x5B9A;&#x4E49;&#x7EB9;&#x7406;&#x7684;&#x4EE3;&#x7801;&#x548C;&#x6548;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-ObjC"><span class="hljs-comment">//&#x7EB9;&#x7406;&#x6837;&#x5F0F;</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-built_in">NS_ENUM</span>(<span class="hljs-built_in">NSInteger</span>, QTextureLineDrawType) {
+    QTextureLineDrawType_ColorLine = <span class="hljs-number">-1</span>,        <span class="hljs-comment">// &#x4E0D;&#x4F7F;&#x7528;&#x7EB9;&#x7406;, &#x800C;&#x4E14;&#x4EE5;&#x989C;&#x8272;&#x7684;&#x5F62;&#x5F0F;&#x7ED8;&#x5236;, &#x4F7F;&#x7528;segmentColor&#x4E2D;&#x8272;&#x503C;&#x7ED8;&#x5236;</span>
+    QTextureLineDrawType_SliceAsBackground,     <span class="hljs-comment">// &#x5C06;&#x56FE;&#x7247;&#x4EE5;1&#x50CF;&#x7D20;&#x4E3A;&#x5355;&#x4F4D;&#x6309;&#x884C;&#x5207;&#x7247;, &#x6839;&#x636E;&#x4E0B;&#x6807;&#x4ECE;&#x56FE;&#x7247;&#x9009;&#x53D6;1&#x50CF;&#x7D20;&#x6765;&#x7ED8;&#x5236;&#x7EBF;&#x8DEF;&#x6837;&#x5F0F;(&#x6700;&#x5927;&#x652F;&#x6301;16&#x50CF;&#x7D20;&#x9AD8;)</span>
+    QTextureLineDrawType_RepeatDraw,            <span class="hljs-comment">// &#x91CD;&#x590D;&#x7ED8;&#x5236;&#x6574;&#x4E2A;&#x56FE;&#x7247;</span>
+    QTextureLineDrawType_FootPrint,             <span class="hljs-comment">// &#x4EE5;&#x8DB3;&#x8FF9;&#x7684;&#x5F62;&#x5F0F;&#x91CD;&#x590D;&#x7ED8;&#x5236;&#x6574;&#x4E2A;&#x56FE;&#x7247;</span>
+};
+
+<span class="hljs-comment">// &#x8DEF;&#x5F84;&#x8986;&#x76D6;</span>
+<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">QRouteOverlay</span></span>
+- (<span class="hljs-keyword">id</span>)initWithCoordinates:(CLLocationCoordinate2D *)coordinateArray count:(<span class="hljs-built_in">NSUInteger</span>)count arrLine:(<span class="hljs-built_in">NSArray</span>&lt;QSegmentStyle *&gt; *)arrLine
+{
+    <span class="hljs-keyword">if</span> (count == <span class="hljs-number">0</span> || arrLine.count == <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>;
+    }
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span> = [<span class="hljs-keyword">super</span> initWithCoordinates:coordinateArray count:count])
+    {
+        <span class="hljs-keyword">self</span>.arrLine = [<span class="hljs-built_in">NSMutableArray</span> array];
+        [<span class="hljs-keyword">self</span>.arrLine addObjectsFromArray:arrLine];
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>;
+}
+<span class="hljs-keyword">@end</span>
+
+<span class="hljs-comment">// &#x81EA;&#x5B9A;&#x4E49;&#x7EB9;&#x7406;&#x6E32;&#x67D3;</span>
+- (QOverlayView *)mapView:(QMapView *)mapView viewForOverlay:(<span class="hljs-keyword">id</span>&lt;QOverlay&gt;)overlay
+{
+    <span class="hljs-keyword">if</span> ([overlay isKindOfClass:[QRouteOverlay class]])
+    {
+        QRouteOverlay *ro = (QRouteOverlay*)overlay;
+        QTexturePolylineView *polylineRender = [[QTexturePolylineView alloc] initWithPolyline:overlay];
+        polylineRender.segmentStyle = ro.arrLine;
+         <span class="hljs-keyword">if</span> ([<span class="hljs-keyword">self</span>.lines indexOfObject:overlay] == <span class="hljs-number">1</span>) {
+           <span class="hljs-comment">// &#x91CD;&#x590D;&#x7ED8;&#x5236;&#x6574;&#x4E2A;&#x56FE;&#x7247;</span>
+            polylineRender.drawType = QTextureLineDrawType_RepeatDraw;
+            polylineRender.styleTextureImage = [<span class="hljs-built_in">UIImage</span> imageNamed:<span class="hljs-string">@&quot;ball&quot;</span>];
+            polylineRender.lineWidth = <span class="hljs-number">15</span>;
+        } <span class="hljs-keyword">else</span> {
+            polylineRender.drawType = QTextureLineDrawType_FootPrint;
+            polylineRender.lineWidth = <span class="hljs-number">12</span>;
+            polylineRender.styleTextureImage = [<span class="hljs-built_in">UIImage</span> imageNamed:<span class="hljs-string">@&quot;foot.jpg&quot;</span>];
+        }
+        <span class="hljs-keyword">return</span> polylineRender;
+    }
+   <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>;
+}
+
+<span class="hljs-comment">// &#x6DFB;&#x52A0;&#x8DB3;&#x8FF9;&#x8DEF;&#x5F84;</span>
+- (<span class="hljs-keyword">void</span>)addFootPrint
+{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> COUNT = <span class="hljs-number">3</span>;
+    CLLocationCoordinate2D polylineCoords[COUNT];
+    polylineCoords[<span class="hljs-number">0</span>].latitude = <span class="hljs-number">39.9442</span>;
+    polylineCoords[<span class="hljs-number">0</span>].longitude = <span class="hljs-number">116.01</span>;
+
+    polylineCoords[<span class="hljs-number">1</span>].latitude = <span class="hljs-number">39.942570</span>;
+    polylineCoords[<span class="hljs-number">1</span>].longitude = <span class="hljs-number">116.141769</span>;
+
+    polylineCoords[<span class="hljs-number">2</span>].latitude = <span class="hljs-number">39.838619</span>;
+    polylineCoords[<span class="hljs-number">2</span>].longitude = <span class="hljs-number">116.144</span>;
+
+    <span class="hljs-built_in">NSMutableArray</span>* routeLineArray = [<span class="hljs-built_in">NSMutableArray</span> array];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; COUNT<span class="hljs-number">-1</span>; i++)
+    {
+        QSegmentStyle *subLine = [[QSegmentStyle alloc] init];
+        subLine.startIndex = i;
+        subLine.endIndex  = i+<span class="hljs-number">1</span>;
+        <span class="hljs-comment">// random color.</span>
+        subLine.colorImageIndex = arc4random() % <span class="hljs-number">6</span>;
+        [routeLineArray addObject:subLine];
+    }
+    QRouteOverlay *polyline = [[QRouteOverlay alloc] initWithCoordinates:polylineCoords count:COUNT arrLine:routeLineArray];
+    [<span class="hljs-keyword">self</span>.lines addObject:polyline];
+    [<span class="hljs-keyword">self</span>.mapView addOverlay:polyline];
+}
+
+<span class="hljs-comment">// &#x6DFB;&#x52A0;&#x91CD;&#x590D;&#x7ED8;&#x5236;&#x56FE;&#x7247;&#x8DEF;&#x5F84;</span>
+- (<span class="hljs-keyword">void</span>)addRepeatDraw
+{
+  <span class="hljs-comment">// &#x4E0E;&#x8DB3;&#x8FF9;&#x8DEF;&#x5F84;&#x76F8;&#x4F3C;</span>
+}
+</code></pre>
+<p>&#x8FD0;&#x884C;&#x7A0B;&#x5E8F;&#xFF0C;&#x6548;&#x679C;&#x56FE;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="../images/overlay-texture.png" width="350"></p>
+<h3 id="&#x8BBE;&#x7F6E;&#x7EBF;&#x7684;&#x5206;&#x6BB5;&#x989C;&#x8272;&#xFF1A;">&#x8BBE;&#x7F6E;&#x7EBF;&#x7684;&#x5206;&#x6BB5;&#x989C;&#x8272;&#xFF1A;</h3>
+<p>&#x53EF;&#x901A;&#x8FC7; QSegmentStyle &#x4E2D;&#x7684; <code>colorImageIndex</code> &#x8BBE;&#x7F6E;&#x5404;&#x5206;&#x6BB5;&#x7684;&#x989C;&#x8272;&#xFF0C;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-ObjC"><span class="hljs-comment">// &#x8DEF;&#x5F84;&#x8986;&#x76D6;(&#x4E0E;&#x81EA;&#x5B9A;&#x4E49;&#x7EB9;&#x7406;&#x76F8;&#x540C;)</span>
+<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">QRouteOverlay</span></span>
+- (<span class="hljs-keyword">id</span>)initWithCoordinates:(CLLocationCoordinate2D *)coordinateArray count:(<span class="hljs-built_in">NSUInteger</span>)count arrLine:(<span class="hljs-built_in">NSArray</span>&lt;QSegmentStyle *&gt; *)arrLine
+{
+  <span class="hljs-comment">// ...........</span>
+}
+<span class="hljs-keyword">@end</span>
+
+- (QOverlayView *)mapView:(QMapView *)mapView viewForOverlay:(<span class="hljs-keyword">id</span>&lt;QOverlay&gt;)overlay
+{
+      <span class="hljs-keyword">if</span> ([overlay isKindOfClass:[QRouteOverlay class]])
+    {
+        QRouteOverlay *ro = (QRouteOverlay*)overlay;
+        QTexturePolylineView *polylineRender = [[QTexturePolylineView alloc] initWithPolyline:overlay];
+        polylineRender.segmentStyle = ro.arrLine;
+        polylineRender.styleTextureImage = [<span class="hljs-built_in">UIImage</span> imageNamed:<span class="hljs-string">@&quot;colorSample&quot;</span>];
+          <span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x7BAD;&#x5934;&#x6837;&#x5F0F;</span>
+        polylineRender.symbolImage = [<span class="hljs-built_in">UIImage</span> imageNamed:<span class="hljs-string">@&quot;arrow.png&quot;</span>];
+        polylineRender.lineWidth = <span class="hljs-number">10</span>;
+        polylineRender.drawSymbol = <span class="hljs-literal">YES</span>;
+        polylineRender.symbolGap = <span class="hljs-number">52</span>;
+
+        <span class="hljs-keyword">return</span> polylineRender;
+    }
+
+    <span class="hljs-comment">// &#x6298;&#x7EBF;&#x7C7B;&#x578B;</span>
+    <span class="hljs-keyword">if</span> ([overlay isKindOfClass:[QPolyline class]])
+    {
+        QPolyline *poly = (QPolyline*)overlay;
+        QTexturePolylineView *polylineRender = [[QTexturePolylineView alloc] initWithPolyline:overlay];
+
+        <span class="hljs-keyword">if</span> ([<span class="hljs-keyword">self</span>.trafficLines indexOfObject:overlay] == <span class="hljs-number">1</span>) {
+            polylineRender.lineWidth = <span class="hljs-number">10</span>;
+              <span class="hljs-comment">// &#x4E0D;&#x4F7F;&#x7528;&#x7EB9;&#x7406;, &#x800C;&#x4E14;&#x4EE5;&#x989C;&#x8272;&#x7684;&#x5F62;&#x5F0F;&#x7ED8;&#x5236;, &#x4F7F;&#x7528;segmentColor&#x4E2D;&#x8272;&#x503C;&#x7ED8;&#x5236;</span>
+            polylineRender.drawType = QTextureLineDrawType_ColorLine;
+            polylineRender.drawSymbol = <span class="hljs-literal">YES</span>;
+            polylineRender.symbolGap = <span class="hljs-number">32</span>;
+            <span class="hljs-keyword">int</span> count = (<span class="hljs-keyword">int</span>)poly.pointCount;
+            polylineRender.borderWidth = <span class="hljs-number">2</span>;
+            <span class="hljs-built_in">NSArray</span> *colors = @[[<span class="hljs-built_in">UIColor</span> colorWithRed:<span class="hljs-number">254</span>/<span class="hljs-number">255.0</span> green:<span class="hljs-number">212</span>/<span class="hljs-number">255.0</span> blue:<span class="hljs-number">68</span>/<span class="hljs-number">255.0</span> alpha:<span class="hljs-number">0.9</span>],
+                                [<span class="hljs-built_in">UIColor</span> colorWithRed:<span class="hljs-number">244</span>/<span class="hljs-number">255.0</span> green:<span class="hljs-number">75</span>/<span class="hljs-number">255.0</span> blue:<span class="hljs-number">126</span>/<span class="hljs-number">255.0</span> alpha:<span class="hljs-number">0.9</span>],
+                                [<span class="hljs-built_in">UIColor</span> colorWithRed:<span class="hljs-number">82</span>/<span class="hljs-number">255.0</span> green:<span class="hljs-number">192</span>/<span class="hljs-number">255.0</span> blue:<span class="hljs-number">132</span>/<span class="hljs-number">255.0</span> alpha:<span class="hljs-number">0.9</span>]
+                                ];
+            <span class="hljs-built_in">NSMutableArray</span>&lt;QSegmentColor *&gt;* segColors = [<span class="hljs-built_in">NSMutableArray</span> array];
+              <span class="hljs-comment">//    &#x968F;&#x673A;&#x4EA7;&#x751F;&#x5206;&#x6BB5;&#x989C;&#x8272;</span>
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; count<span class="hljs-number">-1</span>; i++) {
+                QSegmentColor *style = [[QSegmentColor alloc] init];
+                style.startIndex  = i;
+                style.endIndex  = i+<span class="hljs-number">1</span>;
+                style.color = colors[arc4random()%<span class="hljs-number">3</span>];
+                style.borderColor = [<span class="hljs-built_in">UIColor</span> colorWithRed:<span class="hljs-number">32</span>/<span class="hljs-number">255.0</span> green:<span class="hljs-number">122</span>/<span class="hljs-number">255.0</span> blue:<span class="hljs-number">67</span>/<span class="hljs-number">255.0</span> alpha:<span class="hljs-number">0.9</span>];
+                [segColors addObject:style];
+                polylineRender.segmentColor = segColors;
+            }
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// &#x901A;&#x8FC7; colorImageIndex &#x5B9A;&#x4E49;&#x5206;&#x6BB5;&#x989C;&#x8272;</span>
+            polylineRender.displayLevel = QOverlayLevelAboveLabels;
+            polylineRender.lineWidth = <span class="hljs-number">8</span>;
+            <span class="hljs-built_in">NSMutableArray</span>* segStyles = [<span class="hljs-built_in">NSMutableArray</span> array];
+            <span class="hljs-keyword">int</span> count = (<span class="hljs-keyword">int</span>)poly.pointCount;
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; count<span class="hljs-number">-1</span>; i++) {
+                QSegmentStyle *style = [[QSegmentStyle alloc] init];
+                style.startIndex  = i;
+                style.endIndex  = i+<span class="hljs-number">1</span>;
+                style.colorImageIndex = arc4random() % <span class="hljs-number">5</span>;
+                [segStyles addObject:style];
+            }
+            polylineRender.segmentStyle = segStyles;
+        }
+        <span class="hljs-keyword">return</span> polylineRender;
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>;
+}
+
+<span class="hljs-comment">// &#x5177;&#x4F53;&#x914D;&#x7F6E;&#x53EF;&#x53C2;&#x8003;&#x5B98;&#x65B9;iOS Demo</span>
+- (<span class="hljs-keyword">void</span>)addCustomLine
+- (<span class="hljs-keyword">void</span>)addColorLine
+</code></pre>
+<p>&#x8FD0;&#x884C;&#x7A0B;&#x5E8F;&#xFF0C;&#x6548;&#x679C;&#x56FE;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="../images/overlay-texture-color.png" width="350"></p>
+<h3 id="&#x8DEF;&#x5F84;&#x7F6E;&#x7070;&#x548C;&#x64E6;&#x9664;">&#x8DEF;&#x5F84;&#x7F6E;&#x7070;&#x548C;&#x64E6;&#x9664;</h3>
+<p>&#x6B64;&#x529F;&#x80FD;&#x7528;&#x4E8E;&#x628A;&#x884C;&#x8D70;&#x8FC7;&#x7684;&#x8DEF;&#x5F84;&#x7EBF;&#x6BB5;&#x7F6E;&#x7070;&#x6216;&#x8005;&#x64E6;&#x9664;&#xFF0C;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-ObjC"><span class="hljs-comment">// &#x8DEF;&#x7EBF;&#x7EBF;&#x6BB5;&#x6570;&#x7EC4;</span>
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSMutableArray</span>&lt;QPolyline *&gt; *lines;
+
+QTexturePolylineView *polylineView = (QTexturePolylineView *)[<span class="hljs-keyword">self</span>.mapView viewForOverlay:<span class="hljs-keyword">self</span>.lines.firstObject];
+
+<span class="hljs-comment">/**
+ * - (void) eraseFromStartToCurrentPoint:(CLLocationCoordinate2D)coordinate searchFrom:(int)pointIndex toColor:(BOOL)clearColor 
+ *
+ *    coordinate    &#x88AB;&#x64E6;&#x9664;&#x7684;&#x7EC8;&#x70B9;&#x5750;&#x6807;
+ *    pointIndex    &#x7EC8;&#x70B9;&#x6240;&#x5728;&#x5B50;&#x7EBF;&#x6BB5;&#x8D77;&#x70B9;&#x7684;&#x4E0B;&#x6807;
+ *    clearColor    yes&#x5219;&#x64E6;&#x9664; no&#x5219;&#x7F6E;&#x7070;(&#x53C2;&#x7167;eraseColor)
+ */</span>
+
+<span class="hljs-comment">// &#x64E6;&#x9664;&#x7EBF;&#x6BB5;</span>
+[polylineView eraseFromStartToCurrentPoint:CLLocationCoordinate2DMake(<span class="hljs-number">39.846874</span>, <span class="hljs-number">116.494518</span>) searchFrom:<span class="hljs-number">2</span> toColor:<span class="hljs-literal">YES</span>];
+
+<span class="hljs-comment">// &#x7F6E;&#x7070;&#x7EBF;&#x6BB5;</span>
+[polylineView eraseFromStartToCurrentPoint:CLLocationCoordinate2DMake(<span class="hljs-number">39.948517</span>, <span class="hljs-number">116.484256</span>) searchFrom:<span class="hljs-number">1</span> toColor:<span class="hljs-literal">NO</span>];
+</code></pre>
+<p>&#x6548;&#x679C;&#x56FE;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="../images/overlay-texture-clear.png"></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="overlay-polyline.html" class="navigation navigation-prev " aria-label="Previous page: 折线和虚线">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="overlay-polygon.html" class="navigation navigation-next " aria-label="Next page: 多边形">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"自定义纹理折线","level":"5.1.2","depth":2,"next":{"title":"多边形","level":"5.1.3","depth":2,"path":"overlay/overlay-polygon.md","ref":"overlay/overlay-polygon.md","articles":[]},"previous":{"title":"折线和虚线","level":"5.1.1","depth":2,"path":"overlay/overlay-polyline.md","ref":"overlay/overlay-polyline.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"overlay/overlay-texture.md","mtime":"2019-12-10T07:44:14.907Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-12-10T08:51:17.315Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
